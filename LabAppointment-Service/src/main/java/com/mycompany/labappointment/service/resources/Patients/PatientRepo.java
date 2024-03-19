@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.labappointment.service.resources;
+package com.mycompany.labappointment.service.resources.Patients;
 
-import com.mycompany.labappointment.service.resources.Patient.Gender;
+import com.mycompany.labappointment.service.resources.Db.DBUtils;
+import com.mycompany.labappointment.service.resources.Patients.Patient.Gender;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -150,6 +151,24 @@ public class PatientRepo {
             e.printStackTrace();
         }
         return patients;
+    }
+
+    public boolean login(String userName, String password) {
+        try {
+            try (Connection conn = dbConn.GetConnection(); 
+                    PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT UserName, Password FROM Patients WHERE UserName = ? AND Password = ?")) {
+                stmt.setString(1, userName);
+                stmt.setString(2, password);
+                ResultSet rs = stmt.executeQuery();
+                return rs.next(); // If there is a matching record, return true
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
