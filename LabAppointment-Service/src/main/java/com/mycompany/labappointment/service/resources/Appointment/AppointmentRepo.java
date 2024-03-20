@@ -27,7 +27,7 @@ public class AppointmentRepo {
 
     public boolean addAppointment(Appointment appointment) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "INSERT INTO Appointments (PatientID, TestID, TechnicianID, DoctorID, AppointmentDateTime) VALUES (?, ?, ?, ?, ?);",
                             Statement.RETURN_GENERATED_KEYS)) {
@@ -53,7 +53,7 @@ public class AppointmentRepo {
 
     public Appointment getAppointmentByID(int appointmentID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Appointments WHERE AppointmentID = ?")) {
                 stmt.setInt(1, appointmentID);
                 ResultSet rs = stmt.executeQuery();
@@ -78,7 +78,7 @@ public class AppointmentRepo {
 
     public boolean updateAppointment(Appointment appointment) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "UPDATE Appointments SET PatientID = ?, TestID = ?, TechnicianID = ?, DoctorID = ?, AppointmentDateTime = ? WHERE AppointmentID = ?")) {
                 stmt.setInt(1, appointment.getPatientID());
@@ -100,7 +100,7 @@ public class AppointmentRepo {
 
     public boolean deleteAppointment(int appointmentID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("DELETE FROM Appointments WHERE AppointmentID = ?")) {
                 stmt.setInt(1, appointmentID);
                 int rowsDeleted = stmt.executeUpdate();
@@ -117,7 +117,7 @@ public class AppointmentRepo {
     public List<Appointment> getAllAppointments() {
         List<Appointment> appointments = new ArrayList<>();
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Appointments");
                 while (rs.next()) {

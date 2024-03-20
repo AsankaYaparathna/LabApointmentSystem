@@ -14,7 +14,9 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -28,6 +30,8 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -82,50 +86,91 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span>
+        Appointment</a>
 
     </div>
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
-  
+
   </section><!-- End Hero -->
 
   <main id="main">
-   
+
     <div class="container text-center" style="margin-top: -400px;">
       <div class="row justify-content-md-center">
-        
-          <div class="col-lg-6 mt-5 mt-lg-0">
-            <div class="card px-5 py-3 ">
-              <img class="" src="./assets/img/doctors/doctors-1.jpg" alt="" style="width: 200px; margin-left: 28%; border-radius: 100px;">
-              
-              <h2>LOGIN</h2>
-              <form action="forms/contact.php" method="post" role="form" class="">
-                
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="userName" id="userName" placeholder="User Name" required>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                </div>
-                <div class="text-center mt-3">
-                  <button class="btn btn-outline-primary col-lg-12" type="submit">Login</button>
-                </div>
-                <div class="mt-3">
-                  <a href="register.html" ><p class="text-start">Create your Account <i class="fa-solid fa-arrow-right"></i></p> </a>
-                </div>
-              </form>
+
+        <div class="col-lg-6 mt-5 mt-lg-0">
+          <div class="card px-5 py-3 ">
+            <img class="" src="./assets/img/doctors/doctors-1.jpg" alt=""
+              style="width: 200px; margin-left: 28%; border-radius: 100px;">
+
+            <h2>LOGIN</h2>
+
+
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="userName" id="userName" placeholder="User Name" required>
             </div>
+            <div class="form-group mt-3">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-outline-primary col-lg-12" onclick="Login()">Login</button>
+            </div>
+            <div class="mt-3">
+              <a href="register.html">
+                <p class="text-start">Create your Account <i class="fa-solid fa-arrow-right"></i></p>
+              </a>
+            </div>
+
           </div>
+        </div>
       </div>
     </div>
-      
 
-      
+    <script>
 
- 
+      var baseUrl = 'http://localhost:8080';
+
+      function Login() {
+        var userName = document.getElementById("userName").value;
+        var password = document.getElementById("password").value;
+
+        var loginRequest = {
+          userName: userName,
+          password: password
+        };
+
+        fetch(baseUrl + '/LabAppointment-Service/resources/patient/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(loginRequest)
+        })
+          .then(response => {
+            if (response.ok) {
+              localStorage.setItem('username', userName);
+              swal("Login Successful!", "", "success")
+              .then(() => {
+                  window.location.href = "index.html";
+                });
+            } else {
+              swal("Login failed!", "", "error");
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            swal("Login failed!", "", "error");
+          });
+      }
+
+    </script>
+
+
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -151,7 +196,8 @@
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

@@ -26,7 +26,7 @@ public class TechnicianRepo {
 
     public boolean addTechnician(Technician technician) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "INSERT INTO Technicians (FirstName, LastName, ContactNumber, Email, UserName, Password) VALUES (?, ?, ?, ?, ?, ?);",
                             Statement.RETURN_GENERATED_KEYS)) {
@@ -53,7 +53,7 @@ public class TechnicianRepo {
 
     public Technician getTechnicianByID(int technicianID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Technicians WHERE TechnicianID = ?")) {
                 stmt.setInt(1, technicianID);
                 ResultSet rs = stmt.executeQuery();
@@ -79,7 +79,7 @@ public class TechnicianRepo {
 
     public boolean updateTechnician(Technician technician) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "UPDATE Technicians SET FirstName = ?, LastName = ?, ContactNumber = ?, Email = ?, UserName = ?, Password = ? WHERE TechnicianID = ?")) {
                 stmt.setString(1, technician.getFirstName());
@@ -102,7 +102,7 @@ public class TechnicianRepo {
 
     public boolean deleteTechnician(int technicianID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("DELETE FROM Technicians WHERE TechnicianID = ?")) {
                 stmt.setInt(1, technicianID);
                 int rowsDeleted = stmt.executeUpdate();
@@ -119,7 +119,7 @@ public class TechnicianRepo {
     public List<Technician> getAllTechnicians() {
         List<Technician> technicians = new ArrayList<>();
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Technicians");
                 while (rs.next()) {

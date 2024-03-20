@@ -28,7 +28,7 @@ public class PaymentRepo {
 
     public boolean addPayment(Payment payment) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "INSERT INTO Payments (PatientID, Amount, PaymentDateTime, PaymentMethod) VALUES (?, ?, ?, ?);",
                             Statement.RETURN_GENERATED_KEYS)) {
@@ -53,7 +53,7 @@ public class PaymentRepo {
 
     public Payment getPaymentByID(int paymentID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Payments WHERE PaymentID = ?")) {
                 stmt.setInt(1, paymentID);
                 ResultSet rs = stmt.executeQuery();
@@ -77,7 +77,7 @@ public class PaymentRepo {
 
     public boolean updatePayment(Payment payment) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "UPDATE Payments SET PatientID = ?, Amount = ?, PaymentDateTime = ?, PaymentMethod = ? WHERE PaymentID = ?")) {
                 stmt.setInt(1, payment.getPatientID());
@@ -98,7 +98,7 @@ public class PaymentRepo {
 
     public boolean deletePayment(int paymentID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("DELETE FROM Payments WHERE PaymentID = ?")) {
                 stmt.setInt(1, paymentID);
                 int rowsDeleted = stmt.executeUpdate();
@@ -115,7 +115,7 @@ public class PaymentRepo {
     public List<Payment> getAllPayments() {
         List<Payment> payments = new ArrayList<>();
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Payments");
                 while (rs.next()) {

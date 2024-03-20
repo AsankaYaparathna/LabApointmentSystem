@@ -6,6 +6,8 @@ package com.mycompany.labappointment.service.resources.Patients;
 
 import com.mycompany.labappointment.service.resources.Db.DBUtils;
 import com.mycompany.labappointment.service.resources.Patients.Patient.Gender;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,21 +21,16 @@ import java.util.List;
  * @author shakyapa
  */
 public class PatientRepo {
-    DBUtils dbConn;
+    DBUtils dbConn = new DBUtils();
     
-    public PatientRepo(){
-        try{
-           dbConn = new DBUtils();
-        }
-        catch(Exception ex){}
-    }
+    public PatientRepo(){}
     
     public boolean addPatient(Patient patient) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
-                    PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Patients (FirstName, LastName, DateOfBirth, Gender, ContactNumber, Email, Address, UserName, Password) "
-                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);")) {
+            try (Connection conn = dbConn.getConnection(); 
+                 PreparedStatement stmt = conn.prepareStatement(
+                     "INSERT INTO Patients (FirstName, LastName, DateOfBirth, Gender, ContactNumber, Email, Address, UserName, Password) "
+                         + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);")) {
                 stmt.setString(1, patient.getFirstName());
                 stmt.setString(2, patient.getLastName());
                 stmt.setDate(3, java.sql.Date.valueOf(patient.getDateOfBirth()));
@@ -42,7 +39,11 @@ public class PatientRepo {
                 stmt.setString(6, patient.getEmail());
                 stmt.setString(7, patient.getAddress());
                 stmt.setString(8, patient.getUserName());
-                stmt.setString(9, patient.getPassword());
+
+                // Encrypt the password
+                String encryptedPassword = encryptPassword(patient.getPassword());
+                stmt.setString(9, encryptedPassword);
+
                 stmt.executeUpdate();
                 return true;
             }
@@ -53,10 +54,23 @@ public class PatientRepo {
         }
         return false;
     }
-    
+
+    private String encryptPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hash = digest.digest(password.getBytes());
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+}
     public Patient getPatientByID(int patientID) {
         try {
-            try (Connection conn = dbConn.GetConnection();
+            try (Connection conn = dbConn.getConnection();
                  PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Patients WHERE PatientID = ?")) {
                 stmt.setInt(1, patientID);
                 ResultSet rs = stmt.executeQuery();
@@ -85,7 +99,7 @@ public class PatientRepo {
     
     public boolean updatePatient(Patient patient) {
         try {
-            try (Connection conn = dbConn.GetConnection(); PreparedStatement stmt = conn.prepareStatement(
+            try (Connection conn = dbConn.getConnection(); PreparedStatement stmt = conn.prepareStatement(
                     "UPDATE Patients SET FirstName = ?, LastName = ?, DateOfBirth = ?, Gender = ?, ContactNumber = ?, Email = ?, Address = ?, UserName = ?, Password = ? WHERE PatientID = ?;")) {
                 stmt.setString(1, patient.getFirstName());
                 stmt.setString(2, patient.getLastName());
@@ -95,7 +109,11 @@ public class PatientRepo {
                 stmt.setString(6, patient.getEmail());
                 stmt.setString(7, patient.getAddress());
                 stmt.setString(8, patient.getUserName());
-                stmt.setString(9, patient.getPassword());
+                
+                String encryptedPassword = encryptPassword(patient.getPassword());
+                stmt.setString(9, encryptedPassword);
+                
+                //stmt.setString(9, patient.getPassword());
                 stmt.setInt(10, patient.getPatientID());
                 int rowsUpdated = stmt.executeUpdate();
                 return rowsUpdated > 0;
@@ -110,7 +128,7 @@ public class PatientRepo {
 
     public boolean deletePatient(int patientID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); PreparedStatement stmt = conn.prepareStatement(
+            try (Connection conn = dbConn.getConnection(); PreparedStatement stmt = conn.prepareStatement(
                     "DELETE FROM Patients WHERE PatientID = ?")) {
                 stmt.setInt(1, patientID);
                 int rowsDeleted = stmt.executeUpdate();
@@ -127,7 +145,7 @@ public class PatientRepo {
     public List<Patient> getAllPatients() {
         List<Patient> patients = new ArrayList<>();
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Patients");
                 while (rs.next()) {
@@ -155,11 +173,15 @@ public class PatientRepo {
 
     public boolean login(String userName, String password) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                     "SELECT UserName, Password FROM Patients WHERE UserName = ? AND Password = ?")) {
                 stmt.setString(1, userName);
-                stmt.setString(2, password);
+                
+                String encryptedPassword = encryptPassword(password);
+                stmt.setString(2, encryptedPassword);
+                
+                //stmt.setString(2, password);
                 ResultSet rs = stmt.executeQuery();
                 return rs.next(); // If there is a matching record, return true
             }

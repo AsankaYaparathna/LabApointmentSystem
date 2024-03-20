@@ -25,7 +25,7 @@ public class DoctorRepo {
 
     public boolean addDoctor(Doctor doctor) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "INSERT INTO Doctors (FirstName, LastName, ContactNumber, Email) VALUES (?, ?, ?, ?);")) {
                 stmt.setString(1, doctor.getFirstName());
@@ -45,7 +45,7 @@ public class DoctorRepo {
 
     public Doctor getDoctorByID(int doctorID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Doctors WHERE DoctorID = ?")) {
                 stmt.setInt(1, doctorID);
                 ResultSet rs = stmt.executeQuery();
@@ -69,7 +69,7 @@ public class DoctorRepo {
 
     public boolean updateDoctor(Doctor doctor) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "UPDATE Doctors SET FirstName = ?, LastName = ?, ContactNumber = ?, Email = ? WHERE DoctorID = ?;")) {
                 stmt.setString(1, doctor.getFirstName());
@@ -90,7 +90,7 @@ public class DoctorRepo {
 
     public boolean deleteDoctor(int doctorID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("DELETE FROM Doctors WHERE DoctorID = ?")) {
                 stmt.setInt(1, doctorID);
                 int rowsDeleted = stmt.executeUpdate();
@@ -107,7 +107,7 @@ public class DoctorRepo {
     public List<Doctor> getAllDoctors() {
         List<Doctor> doctors = new ArrayList<>();
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Doctors");
                 while (rs.next()) {

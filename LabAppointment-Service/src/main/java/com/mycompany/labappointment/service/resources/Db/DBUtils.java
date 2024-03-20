@@ -13,29 +13,25 @@ import java.sql.SQLException;
  * @author shakyapa
  */
 public class DBUtils {
-    static final String DB_URL = "jdbc:mysql://localhost:3306/lab_appointment_system";
-    static final String USER = "root";
-    static final String PASS = "root";
-    
+
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/";
+    private static final String USER = "root";
+    private static final String PASS = "root";
+
     public DBUtils() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (Exception e) {
-            
+        } catch (ClassNotFoundException e) {
+            System.err.println("Error loading JDBC driver: " + e.getMessage());
         }
     }
-    
-    public Connection GetConnection(){
-       try {
-            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);) {
-                return conn;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+    public Connection getConnection() {
+        try {
+            return DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (SQLException e) {
+            System.err.println("Error connecting to database: " + e.getMessage());
+            return null;
         }
-       return null;
     }
 }

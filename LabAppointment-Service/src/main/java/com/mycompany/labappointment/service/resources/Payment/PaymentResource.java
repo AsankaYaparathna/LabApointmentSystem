@@ -33,7 +33,7 @@ public class PaymentResource {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPaymentById(@PathParam("id") int id) {
         try {
@@ -64,7 +64,7 @@ public class PaymentResource {
     }
 
     @PUT
-    @Path("{id}")
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updatePayment(String json, @PathParam("id") int id) {
         try {
@@ -80,7 +80,7 @@ public class PaymentResource {
     }
 
     @DELETE
-    @Path("{id}")
+    @Path("delete/{id}")
     public Response deletePayment(@PathParam("id") int id) {
         try {
             new PaymentRepo().deletePayment(id);

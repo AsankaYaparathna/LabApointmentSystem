@@ -9,9 +9,13 @@ package com.mycompany.labappointment.service.resources.Patients;
  * @author shakyapa
  */
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mycompany.labappointment.service.resources.Utility.LocalDateAdapter;
+import com.mycompany.labappointment.service.resources.Utility.LoginRequest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,7 +37,7 @@ public class PatientResource {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPatientById(@PathParam("id") int id) {
         try {
@@ -53,6 +57,8 @@ public class PatientResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addPatient(String json) {
         try {
+            Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
             Patient model = gson.fromJson(json, Patient.class);
             // Perform input validation here if needed
             new PatientRepo().addPatient(model);
@@ -88,6 +94,26 @@ public class PatientResource {
         } catch (Exception e) {
             logger.error("Failed to delete patient with ID: " + id, e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+     @POST
+    @Path("login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response loginPatient(String json) {
+        Gson gson = new Gson();
+        LoginRequest loginRequest = gson.fromJson(json, LoginRequest.class);
+        String userName = loginRequest.getUserName();
+        String password = loginRequest.getPassword();
+        
+        PatientRepo patientRepo = new PatientRepo();
+        boolean loginSuccess = patientRepo.login(userName, password);
+        
+        if (loginSuccess) {
+            return Response.ok().build(); // Successful login
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build(); // Unauthorized
         }
     }
 }

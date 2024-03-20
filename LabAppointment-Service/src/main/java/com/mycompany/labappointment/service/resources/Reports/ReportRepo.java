@@ -27,7 +27,7 @@ public class ReportRepo {
 
     public boolean addReport(Report report) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "INSERT INTO Reports (PatientID, TestID, ReportDate, ReportFile) VALUES (?, ?, ?, ?);",
                             Statement.RETURN_GENERATED_KEYS)) {
@@ -52,7 +52,7 @@ public class ReportRepo {
 
     public Report getReportByID(int reportID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Reports WHERE ReportID = ?")) {
                 stmt.setInt(1, reportID);
                 ResultSet rs = stmt.executeQuery();
@@ -76,7 +76,7 @@ public class ReportRepo {
 
     public boolean updateReport(Report report) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "UPDATE Reports SET PatientID = ?, TestID = ?, ReportDate = ?, ReportFile = ? WHERE ReportID = ?")) {
                 stmt.setInt(1, report.getPatientID());
@@ -97,7 +97,7 @@ public class ReportRepo {
 
     public boolean deleteReport(int reportID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("DELETE FROM Reports WHERE ReportID = ?")) {
                 stmt.setInt(1, reportID);
                 int rowsDeleted = stmt.executeUpdate();
@@ -114,7 +114,7 @@ public class ReportRepo {
     public List<Report> getAllReports() {
         List<Report> reports = new ArrayList<>();
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Reports");
                 while (rs.next()) {

@@ -26,7 +26,7 @@ public class TestRepo {
 
     public boolean addTest(Test test) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "INSERT INTO Tests (TestName, Description, Price) VALUES (?, ?, ?);",
                             Statement.RETURN_GENERATED_KEYS)) {
@@ -50,7 +50,7 @@ public class TestRepo {
 
     public Test getTestByID(int testID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Tests WHERE TestID = ?")) {
                 stmt.setInt(1, testID);
                 ResultSet rs = stmt.executeQuery();
@@ -73,7 +73,7 @@ public class TestRepo {
 
     public boolean updateTest(Test test) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
                             "UPDATE Tests SET TestName = ?, Description = ?, Price = ? WHERE TestID = ?")) {
                 stmt.setString(1, test.getTestName());
@@ -93,7 +93,7 @@ public class TestRepo {
 
     public boolean deleteTest(int testID) {
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement("DELETE FROM Tests WHERE TestID = ?")) {
                 stmt.setInt(1, testID);
                 int rowsDeleted = stmt.executeUpdate();
@@ -110,7 +110,7 @@ public class TestRepo {
     public List<Test> getAllTests() {
         List<Test> tests = new ArrayList<>();
         try {
-            try (Connection conn = dbConn.GetConnection(); 
+            try (Connection conn = dbConn.getConnection(); 
                     Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery("SELECT * FROM Tests");
                 while (rs.next()) {
