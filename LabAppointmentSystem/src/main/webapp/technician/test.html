@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Lab Apointment System - Doctor</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="../assets/img/favicon.png" rel="icon">
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-flex align-items-center fixed-top">
+        <div class="container d-flex justify-content-between">
+            <div class="contact-info d-flex align-items-center">
+                <i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+                <i class="bi bi-phone"></i> +1 5589 55488 55
+            </div>
+            <div class="d-none d-lg-flex social-links align-items-center">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto"><a href="index.html">Lab Apointment System</a></h1>
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+                    <li><a class="nav-link scrollto" href="patient.html">Patients</a></li>
+                    <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
+                    <li><a class="nav-link scrollto active" href="test.html">Test</a></li>
+                    <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
+                    <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+            <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span>
+                Appointment</a>
+
+            <a href="login.html" id="loginButton" class="appointment-btn scrollto"><span
+                    class="d-none d-md-inline">Login</span></a>
+
+            <button id="logoutButton" onclick="Logout()" class="appointment-btn scrollto"><span
+                    class="d-none d-md-inline" style="display: none;">Logout <i
+                        class="fa-solid fa-right-from-bracket"></i></span></button>
+
+        </div>
+    </header><!-- End Header -->
+
+
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <h1>Welcome to <br> technician Portal</h1>
+            <h2>Manage everything here</h2>
+
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="icon-boxes d-flex flex-column justify-content-center">
+                            <div class="row">
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <a href="#viewTest">
+                                        <div class="icon-box mt-4 mt-xl-0">
+                                            <i class="bx bx-receipt"></i>
+                                            <h4>View Tests</h4>
+                                            <p>View all registered Tests and manage their information.</p>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <a href="#addTest">
+                                        <div class="icon-box mt-4 mt-xl-0">
+                                            <i class="bx bx-cube-alt"></i>
+                                            <h4>Add New Test</h4>
+                                            <p>Register a new Test by providing their details below.</p>
+
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <a href="#viewTest">
+                                        <div class="icon-box mt-4 mt-xl-0">
+                                            <i class="bx bx-images"></i>
+                                            <h4>Edit / Delete Test</h4>
+                                            <p>Edit or delete an existing Test's information.</p>
+
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div><!-- End .content-->
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Why Us Section -->
+
+
+        <!-- ======= Counts Section ======= -->
+        <section id="viewTest" class="counts">
+            <div class="container">
+
+                <div class="row">
+
+                    <h2 class="text-center mb-3">Manage All Tests</h2>
+                    <div class="col-lg-12 col-md-12">
+                        <table class="table table-dark table-hover">
+                            <thead>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Counts Section -->
+
+        <!-- ======= Services Section ======= -->
+        <section id="addTest" class="services">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2 id="labelAdd">Add New Test</h2>
+                </div>
+
+                <div class="row">
+                    <div class="row justify-content-md-center">
+                        <div class="col-lg-6 mt-5 mt-lg-0">
+                            <div class="card px-5 py-3 ">
+
+                                <input type="hidden" class="form-control" name="testID" id="testID" required>
+
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="testName" id="testName"
+                                        placeholder="Test Name" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <textarea class="form-control" name="description" id="description"
+                                        placeholder="Description" required></textarea>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="number" class="form-control" name="price" id="price"
+                                        placeholder="Price" step="0.01" required>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button class="btn btn-outline-primary col-lg-12" onclick="addTest()"
+                                        id="addTestButton">
+                                        Add Test
+                                    </button>
+
+                                    <button class="btn btn-outline-primary col-lg-12" style="display: none;"
+                                        id="updateTestButton" onclick="updateTest()">
+                                        Update Test
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section><!-- End Services Section -->
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Lab Apointment System</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <script>
+        var baseUrl = 'http://localhost:8080';
+
+        // Check if username exists in localStorage
+        if (!localStorage.getItem('tusername')) {
+            // If not, redirect to login page
+            window.location.href = 'login.html';
+        }
+        else {
+
+            const loginButton = document.getElementById('loginButton');
+            loginButton.style.display = 'none';
+
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.style.display = 'block';
+        }
+
+        // Call the function to fetch and bind the patient list
+        getAllTests();
+
+        function Logout() {
+            localStorage.removeItem("tusername");
+            window.location.href = 'login.html';
+        }
+
+        function addTest() {
+            var testName = document.getElementById("testName").value;
+            var description = document.getElementById("description").value;
+            var price = document.getElementById("price").value;
+
+            var test = {
+                testName: testName,
+                description: description,
+                price: parseFloat(price) // Convert price to a floating-point number
+            };
+
+            fetch(baseUrl + '/LabAppointment-Service/resources/test/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(test)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        swal("Test added successfully!", "", "success")
+                            .then(() => {
+                                // Reload the table or perform any other necessary actions
+                                getAllTests();
+                                // Optionally, clear the form fields
+                                document.getElementById("testName").value = "";
+                                document.getElementById("description").value = "";
+                                document.getElementById("price").value = "";
+                            });
+                    } else {
+                        swal("Failed to add test!", "Try again", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    swal("Failed to add test!", "Try again", "error");
+                });
+        }
+
+        function updateTest() {
+            // Get the test ID from a hidden field or any other source
+            const testID = document.getElementById('testID').value;
+
+            // Create a test object with the data from the form fields
+            const test = {
+                testID: testID,
+                testName: document.getElementById('testName').value,
+                description: document.getElementById('description').value,
+                price: parseFloat(document.getElementById('price').value) // Convert price to a floating-point number
+            };
+
+            // Make a PUT request to the updateTest endpoint
+            fetch(baseUrl + `/LabAppointment-Service/resources/test/${testID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(test)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        swal("Test updated successfully!", "", "success")
+                            .then(() => {
+                                // Reload the table or perform any other necessary actions
+                                getAllTests();
+                                // Optionally, clear the form fields
+                                document.getElementById('testName').value = '';
+                                document.getElementById('description').value = '';
+                                document.getElementById('price').value = '';
+                                document.getElementById('addTestButton').style.display = 'block';
+                                document.getElementById('updateTestButton').style.display = 'none';
+                            });
+                    } else {
+                        swal("Failed to update test!", "Try again", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    swal("Failed to update test!", "Try again", "error");
+                });
+        }
+
+        function getAllTests() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/test')
+                .then(response => response.json())
+                .then(data => {
+                    // Get the table body element
+                    const tbody = document.getElementById('tbody');
+                    // Clear existing table rows
+                    tbody.innerHTML = '';
+
+                    // Iterate over the data and create a row for each test
+                    data.forEach(test => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                <td>${test.testID}</td>
+                <td>${test.testName}</td>
+                <td>${test.description}</td>
+                <td>${test.price}</td>
+                <td>
+                    <button onclick='TestEdit(${test.testID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button onclick='TestDelete(${test.testID})'><i class="fa-solid fa-trash"></i></button>
+                </td>`;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function TestEdit(testID) {
+            // Navigate to the 'test.html#addTest' URL
+            window.location.href = 'test.html#addTest';
+
+            // Change the text of the <h2> element to 'Edit Test'
+            document.getElementById('labelAdd').innerText = 'Edit Test';
+
+            document.getElementById('addDoctorButton').style.display = 'none';
+            document.getElementById('updateDoctorButton').style.display = 'block';
+            // Fetch the test data by ID
+            fetch(baseUrl + `/LabAppointment-Service/resources/test/${testID}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the form fields with the test data
+                    document.getElementById('TestName').value = data.testName;
+                    document.getElementById('Description').value = data.description;
+                    document.getElementById('Price').value = data.price;
+                    document.getElementById('testID').value = data.testID;
+
+                    // Hide the 'Add Test' button and show the 'Update Test' button
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function TestDelete(testID) {
+            // Show SweetAlert confirm dialog
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this test!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    // If confirmed, delete the test
+                    fetch(baseUrl + `/LabAppointment-Service/resources/test/${testID}`, {
+                        method: 'DELETE'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                // Reload the table after successful deletion
+                                getAllTests();
+                                swal("Poof! The test has been deleted!", {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal("Oops! Something went wrong.", {
+                                    icon: "error",
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            swal("Oops! Something went wrong.", {
+                                icon: "error",
+                            });
+                        });
+                } else {
+                    swal("The test is safe!");
+                }
+            });
+        }
+
+    </script>
+
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

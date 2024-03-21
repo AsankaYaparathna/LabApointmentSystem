@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Lab Apointment System - Patient</title>
+    <title>Lab Apointment System - Doctor</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -61,8 +61,8 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="nav-link scrollto" href="index.html">Home</a></li>
-                    <li><a class="nav-link scrollto active" href="patient.html">Patients</a></li>
-                    <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
+                    <li><a class="nav-link scrollto" href="patient.html">Patients</a></li>
+                    <li><a class="nav-link scrollto active" href="doctor.html">Doctor</a></li>
                     <li><a class="nav-link scrollto" href="test.html">Test</a></li>
                     <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
                     <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
@@ -107,32 +107,32 @@
                         <div class="icon-boxes d-flex flex-column justify-content-center">
                             <div class="row">
                                 <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#viewPatient">
+                                    <a href="#viewDoctor">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-receipt"></i>
-                                            <h4>View Patients</h4>
-                                            <p>View all registered patients and manage their information.</p>
+                                            <h4>View Doctors</h4>
+                                            <p>View all registered Doctors and manage their information.</p>
 
                                         </div>
                                     </a>
                                 </div>
                                 <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#addPatient">
+                                    <a href="#addDoctor">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-cube-alt"></i>
-                                            <h4>Add New Patient</h4>
-                                            <p>Register a new patient by providing their details below.</p>
+                                            <h4>Add New Doctor</h4>
+                                            <p>Register a new Doctor by providing their details below.</p>
 
                                         </div>
                                     </a>
 
                                 </div>
                                 <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#viewPatient">
+                                    <a href="#viewDoctor">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-images"></i>
-                                            <h4>Edit / Delete Patient</h4>
-                                            <p>Edit or delete an existing patient's information.</p>
+                                            <h4>Edit / Delete Doctor</h4>
+                                            <p>Edit or delete an existing Doctor's information.</p>
 
                                         </div>
                                     </a>
@@ -148,24 +148,20 @@
 
 
         <!-- ======= Counts Section ======= -->
-        <section id="viewPatient" class="counts">
+        <section id="viewDoctor" class="counts">
             <div class="container">
 
                 <div class="row">
 
-                    <h2 class="text-center mb-3">Manage All Patients</h2>
+                    <h2 class="text-center mb-3">Manage All Doctors</h2>
                     <div class="col-lg-12 col-md-12">
                         <table class="table table-dark table-hover">
                             <thead>
                                 <th>ID</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>DOB</th>
-                                <th>Gender</th>
                                 <th>Mobile No</th>
                                 <th>Email</th>
-                                <th>Adress</th>
-                                <th>User Name</th>
                                 <th>Action</th>
                             </thead>
                             <tbody id="tbody">
@@ -215,20 +211,19 @@
         </section><!-- End Counts Section -->
 
         <!-- ======= Services Section ======= -->
-        <section id="addPatient" class="services">
+        <section id="addDoctor" class="services">
             <div class="container">
 
                 <div class="section-title">
-                    <h2 id="labelAdd">Add New Patient</h2>
+                    <h2 id="labelAdd">Add New Doctor</h2>
                 </div>
 
                 <div class="row">
                     <div class="row justify-content-md-center">
-
                         <div class="col-lg-6 mt-5 mt-lg-0">
                             <div class="card px-5 py-3 ">
 
-                                <input type="hidden" class="form-control" name="patientID" id="patientID" required>
+                                <input type="hidden" class="form-control" name="doctorID" id="doctorID" required>
 
                                 <div class="form-group mt-3">
                                     <input type="text" class="form-control" name="FirstName" id="FirstName"
@@ -239,25 +234,6 @@
                                         placeholder="Last Name" required>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <div class="row col-lg-12">
-                                        <div class="col-lg-6">
-                                            <input type="date" class="form-control" name="DateOfBirth" id="DateOfBirth"
-                                                placeholder="Date of Birth" required>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                            <select class="form-control" name="Gender" id="Gender" required>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mt-3">
-
-                                </div>
-                                <div class="form-group mt-3">
                                     <input type="tel" class="form-control" name="ContactNumber" id="ContactNumber"
                                         placeholder="Contact Number" required>
                                 </div>
@@ -265,33 +241,22 @@
                                     <input type="email" class="form-control" name="Email" id="Email" placeholder="Email"
                                         required>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="Address" id="Address"
-                                        placeholder="Address" required>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="UserName" id="UserName"
-                                        placeholder="User Name" required>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <input type="password" class="form-control" name="Password" id="Password"
-                                        placeholder="Password" required>
-                                </div>
                                 <div class="text-center mt-3">
-                                    <button class="btn btn-outline-primary col-lg-12" onclick="Register()" id="registerButton">
-                                        Add Patient
+                                    <button class="btn btn-outline-primary col-lg-12" onclick="addDoctor()"
+                                        id="addDoctorButton">
+                                        Add Doctor
                                     </button>
 
                                     <button class="btn btn-outline-primary col-lg-12" style="display: none;"
-                                        id="updateButton"
-                                        onclick="Update()">
-                                        Update Patient
+                                        id="updateDoctorButton" onclick="updateDoctor()">
+                                        Update Doctor
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </section><!-- End Services Section -->
@@ -342,61 +307,92 @@
         }
 
         // Call the function to fetch and bind the patient list
-        getAllPatients();
+        getAllDoctors();
 
         function Logout() {
             localStorage.removeItem("tusername");
             window.location.href = 'login.html';
         }
 
-        function Register() {
+        function addDoctor() {
             var firstName = document.getElementById("FirstName").value;
             var lastName = document.getElementById("LastName").value;
-            var dateOfBirth = document.getElementById("DateOfBirth").value;
-            var gender = document.getElementById("Gender").value;
             var contactNumber = document.getElementById("ContactNumber").value;
             var email = document.getElementById("Email").value;
-            var address = document.getElementById("Address").value;
-            var userName = document.getElementById("UserName").value;
-            var password = document.getElementById("Password").value;
 
-            var patient = {
+            var doctor = {
                 firstName: firstName,
                 lastName: lastName,
-                dateOfBirth: dateOfBirth,
-                gender: gender,
                 contactNumber: contactNumber,
-                email: email,
-                address: address,
-                userName: userName,
-                password: password
+                email: email
             };
 
-            fetch(baseUrl + '/LabAppointment-Service/resources/patient/', {
+            fetch(baseUrl + '/LabAppointment-Service/resources/doctor/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(patient)
+                body: JSON.stringify(doctor)
             })
                 .then(response => {
                     if (response.ok) {
-                        swal("Patient adding successfully!", "", "success")
+                        swal("Doctor added successfully!", "", "success")
                             .then(() => {
-                                window.location.href = "patient.html#viewPatient";
+                                window.location.href = "doctor.html#viewDoctor";
                             });
                     } else {
-                        swal("Failed to adding patient!", "Try again", "error");
+                        swal("Failed to add doctor!", "Try again", "error");
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    swal("Failed to adding patient!", "Try again", "error");
+                    swal("Failed to add doctor!", "Try again", "error");
                 });
         }
 
-        function getAllPatients() {
-            fetch(baseUrl + '/LabAppointment-Service/resources/patient')
+        function updateDoctor() {
+            // Get the doctor ID from hidden field
+            const doctorID = document.getElementById('doctorID').value;
+
+            // Create a doctor object with the data from the form fields
+            const doctor = {
+                doctorID: doctorID,
+                firstName: document.getElementById('FirstName').value,
+                lastName: document.getElementById('LastName').value,
+                contactNumber: document.getElementById('ContactNumber').value,
+                email: document.getElementById('Email').value
+            };
+
+            // Make a PUT request to the updateDoctor endpoint
+            fetch(baseUrl + `/LabAppointment-Service/resources/doctor/${doctorID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(doctor)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        swal("Doctor updated successfully!", "", "success")
+                            .then(() => {
+                                document.getElementById('labelAdd').innerText = 'Add New Doctor';
+                                document.getElementById('registerButton').style.display = 'block';
+                                document.getElementById('updateButton').style.display = 'none';
+                                // If the update was successful, navigate back to the doctor list page
+                                window.location.href = 'doctor.html';
+                            });
+                    } else {
+                        swal("Failed to update doctor!", "Try again", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    swal("Failed to update doctor!", "Try again", "error");
+                });
+        }
+
+        function getAllDoctors() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/doctor')
                 .then(response => response.json())
                 .then(data => {
                     // Get the table body element
@@ -404,23 +400,19 @@
                     // Clear existing table rows
                     tbody.innerHTML = '';
 
-                    // Iterate over the data and create a row for each patient
-                    data.forEach(patient => {
+                    // Iterate over the data and create a row for each doctor
+                    data.forEach(doctor => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                        <td>${patient.patientID}</td>
-                        <td>${patient.firstName}</td>
-                        <td>${patient.lastName}</td>
-                        <td>${patient.dateOfBirth}</td>
-                        <td>${patient.gender}</td>
-                        <td>${patient.contactNumber}</td>
-                        <td>${patient.email}</td>
-                        <td>${patient.address}</td>
-                        <td>${patient.userName}</td>
-                        <td>
-                            <button onclick='PatientEdit(${patient.patientID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button onclick='PatientDelete(${patient.patientID})'><i class="fa-solid fa-trash"></i></button>
-                        </td> `;
+                <td>${doctor.doctorID}</td>
+                <td>${doctor.firstName}</td>
+                <td>${doctor.lastName}</td>
+                <td>${doctor.contactNumber}</td>
+                <td>${doctor.email}</td>
+                <td>
+                    <button onclick='DoctorEdit(${doctor.doctorID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button onclick='DoctorDelete(${doctor.doctorID})'><i class="fa-solid fa-trash"></i></button>
+                </td> `;
                         tbody.appendChild(tr);
                     });
                 })
@@ -429,25 +421,25 @@
                 });
         }
 
-        function PatientDelete(patientID) {
+        function DoctorDelete(doctorID) {
             // Show SweetAlert confirm dialog
             swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this patient!",
+                text: "Once deleted, you will not be able to recover this doctor!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    // If confirmed, delete the patient
-                    fetch(baseUrl + `/LabAppointment-Service/resources/patient/${patientID}`, {
+                    // If confirmed, delete the doctor
+                    fetch(baseUrl + `/LabAppointment-Service/resources/doctor/${doctorID}`, {
                         method: 'DELETE'
                     })
                         .then(response => {
                             if (response.ok) {
                                 // Reload the table after successful deletion
-                                getAllPatients();
-                                swal("Poof! The patient has been deleted!", {
+                                getAllDoctors();
+                                swal("Poof! The doctor has been deleted!", {
                                     icon: "success",
                                 });
                             } else {
@@ -463,86 +455,35 @@
                             });
                         });
                 } else {
-                    swal("The patient is safe!");
+                    swal("The doctor is safe!");
                 }
             });
         }
 
-        function PatientEdit(patientID) {
-            // Navigate to the 'patient.html#addPatient' URL
-            window.location.href = 'patient.html#addPatient';
+        function DoctorEdit(doctorID) {
+            // Navigate to the 'doctor.html#addDoctor' URL
+            window.location.href = 'doctor.html#addDoctor';
 
-            // Change the text of the <h2> element to 'Edit Patient'
-            document.getElementById('labelAdd').innerText = 'Edit Patient';
+            // Change the text of the <h2> element to 'Edit Doctor'
+            document.getElementById('labelAdd').innerText = 'Edit Doctor';
 
             document.getElementById('registerButton').style.display = 'none';
             document.getElementById('updateButton').style.display = 'block';
-            // Fetch the patient data by ID
-            fetch(baseUrl + `/LabAppointment-Service/resources/patient/${patientID}`)
+            // Fetch the doctor data by ID
+            fetch(baseUrl + `/LabAppointment-Service/resources/doctor/${doctorID}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Populate the form fields with the patient data
+                    // Populate the form fields with the doctor data
                     document.getElementById('FirstName').value = data.firstName;
                     document.getElementById('LastName').value = data.lastName;
-                    document.getElementById('DateOfBirth').value = data.dateOfBirth;
-                    document.getElementById('Gender').value = data.gender;
                     document.getElementById('ContactNumber').value = data.contactNumber;
                     document.getElementById('Email').value = data.email;
-                    document.getElementById('Address').value = data.address;
-                    document.getElementById('UserName').value = data.userName;
-                    document.getElementById('Password').value = data.password;
-                    document.getElementById('patientID').value = data.patientID;
+                    document.getElementById('doctorID').value = data.doctorID;
 
-                    // Hide the 'Add Patient' button and show the 'Update Patient' button
+                    // Hide the 'Add Doctor' button and show the 'Update Doctor' button
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                });
-        }
-
-        function Update() {
-            // Get the patient ID from hidden field
-            const patientID = document.getElementById('patientID').value;
-
-            // Create a patient object with the data from the form fields
-            const patient = {
-                patientID: patientID,
-                firstName: document.getElementById('FirstName').value,
-                lastName: document.getElementById('LastName').value,
-                dateOfBirth: document.getElementById('DateOfBirth').value,
-                gender: document.getElementById('Gender').value,
-                contactNumber: document.getElementById('ContactNumber').value,
-                email: document.getElementById('Email').value,
-                address: document.getElementById('Address').value,
-                userName: document.getElementById('UserName').value,
-                password: document.getElementById('Password').value
-            };
-
-            // Make a PUT request to the updatePatient endpoint
-            fetch(baseUrl + `/LabAppointment-Service/resources/patient/${patientID}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(patient)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        swal("Patient Update successfully!", "", "success")
-                            .then(() => {
-                                document.getElementById('labelAdd').innerText = 'Add New Patient';
-                                document.getElementById('registerButton').style.display = 'block';
-                                document.getElementById('updateButton').style.display = 'none';
-                                // If the update was successful, navigate back to the patient list page
-                                window.location.href = 'patient.html';
-                            });
-                    } else {
-                        swal("Failed to Update patient!", "Try again", "error");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    swal("Failed to Update patient!", "Try again", "error");
                 });
         }
 
