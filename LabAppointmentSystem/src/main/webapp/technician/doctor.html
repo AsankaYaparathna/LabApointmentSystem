@@ -376,8 +376,8 @@
                         swal("Doctor updated successfully!", "", "success")
                             .then(() => {
                                 document.getElementById('labelAdd').innerText = 'Add New Doctor';
-                                document.getElementById('registerButton').style.display = 'block';
-                                document.getElementById('updateButton').style.display = 'none';
+                                document.getElementById('addDoctorButton').style.display = 'block';
+                                document.getElementById('updateDoctorButton').style.display = 'none';
                                 // If the update was successful, navigate back to the doctor list page
                                 window.location.href = 'doctor.html';
                             });
@@ -467,8 +467,8 @@
             // Change the text of the <h2> element to 'Edit Doctor'
             document.getElementById('labelAdd').innerText = 'Edit Doctor';
 
-            document.getElementById('registerButton').style.display = 'none';
-            document.getElementById('updateButton').style.display = 'block';
+            document.getElementById('addDoctorButton').style.display = 'none';
+            document.getElementById('updateDoctorButton').style.display = 'block';
             // Fetch the doctor data by ID
             fetch(baseUrl + `/LabAppointment-Service/resources/doctor/${doctorID}`)
                 .then(response => response.json())

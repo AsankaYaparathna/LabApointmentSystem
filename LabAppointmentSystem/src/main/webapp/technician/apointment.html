@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Lab Apointment System - Test</title>
+    <title>Lab Apointment System - Appointment</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -63,8 +63,8 @@
                     <li><a class="nav-link scrollto" href="index.html">Home</a></li>
                     <li><a class="nav-link scrollto" href="patient.html">Patients</a></li>
                     <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
-                    <li><a class="nav-link scrollto active" href="test.html">Test</a></li>
-                    <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
+                    <li><a class="nav-link scrollto" href="test.html">Test</a></li>
+                    <li><a class="nav-link scrollto active" href="apointment.html">Apointment</a></li>
                     <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -107,32 +107,32 @@
                         <div class="icon-boxes d-flex flex-column justify-content-center">
                             <div class="row">
                                 <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#viewTest">
+                                    <a href="#viewAppointment">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-receipt"></i>
-                                            <h4>View Tests</h4>
-                                            <p>View all registered Tests and manage their information.</p>
+                                            <h4>View Appointment</h4>
+                                            <p>View all registered Appointment and manage their information.</p>
 
                                         </div>
                                     </a>
                                 </div>
                                 <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#addTest">
+                                    <a href="#addAppointment">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-cube-alt"></i>
-                                            <h4>Add New Test</h4>
-                                            <p>Register a new Test by providing their details below.</p>
+                                            <h4>Add New Appointment</h4>
+                                            <p>Register a new Appointment by providing their details below.</p>
 
                                         </div>
                                     </a>
 
                                 </div>
                                 <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#viewTest">
+                                    <a href="#viewAppointment">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-images"></i>
-                                            <h4>Edit / Delete Test</h4>
-                                            <p>Edit or delete an existing Test's information.</p>
+                                            <h4>Edit / Delete Appointment</h4>
+                                            <p>Edit or delete an existing Appointment's information.</p>
 
                                         </div>
                                     </a>
@@ -148,19 +148,21 @@
 
 
         <!-- ======= Counts Section ======= -->
-        <section id="viewTest" class="counts">
+        <section id="viewAppointment" class="counts">
             <div class="container">
 
                 <div class="row">
 
-                    <h2 class="text-center mb-3">Manage All Tests</h2>
+                    <h2 class="text-center mb-3">Manage All Appointment</h2>
                     <div class="col-lg-12 col-md-12">
                         <table class="table table-dark table-hover">
                             <thead>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
+                                <th>Patient ID</th>
+                                <th>Test ID</th>
+                                <th>Techcnician ID</th>
+                                <th>Doctor ID</th>
+                                <th>Apointment Date</th>
                                 <th>Action</th>
                             </thead>
                             <tbody id="tbody"></tbody>
@@ -173,11 +175,11 @@
         </section><!-- End Counts Section -->
 
         <!-- ======= Services Section ======= -->
-        <section id="addTest" class="services">
+        <section id="addAppointment" class="services">
             <div class="container">
 
                 <div class="section-title">
-                    <h2 id="labelAdd">Add New Test</h2>
+                    <h2 id="labelAdd">Add New Appointment</h2>
                 </div>
 
                 <div class="row">
@@ -185,35 +187,54 @@
                         <div class="col-lg-6 mt-5 mt-lg-0">
                             <div class="card px-5 py-3 ">
 
-                                <input type="hidden" class="form-control" name="testID" id="testID" required>
+                                <input type="hidden" class="form-control" name="appointmentID" id="appointmentID"
+                                    required>
+
+                                <!-- Select Patient -->
+                                <div class="form-group mt-3">
+                                    <label for="patientID">Select Patient:</label>
+                                    <select class="form-control" name="patientID" id="patientID" required>
+                                        <!-- Patient options will be loaded dynamically -->
+                                    </select>
+                                </div>
+
+                                <!-- Select Test -->
+                                <div class="form-group mt-3">
+                                    <label for="doctorID">Select Test:</label>
+                                    <select class="form-control" name="testID" id="testID" required>
+                                        <!-- Doctor options will be loaded dynamically -->
+                                    </select>
+                                </div>
+
+                                <!-- Select Doctor -->
+                                <div class="form-group mt-3">
+                                    <label for="doctorID">Select Doctor:</label>
+                                    <select class="form-control" name="doctorID" id="doctorID" required>
+                                        <!-- Doctor options will be loaded dynamically -->
+                                    </select>
+                                </div>
 
                                 <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="testName" id="testName"
-                                        placeholder="Test Name" required>
+                                    <input type="datetime-local" class="form-control" name="appointmentDateTime"
+                                        id="appointmentDateTime" required>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <textarea class="form-control" name="description" id="description"
-                                        placeholder="Description" required></textarea>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <input type="number" class="form-control" name="price" id="price"
-                                        placeholder="Price" step="0.01" required>
-                                </div>
+
                                 <div class="text-center mt-3">
-                                    <button class="btn btn-outline-primary col-lg-12" onclick="addTest()"
-                                        id="addTestButton">
-                                        Add Test
+                                    <button class="btn btn-outline-primary col-lg-12" onclick="addAppointment()"
+                                        id="addAppointmentButton">
+                                        Add Appointment
                                     </button>
 
                                     <button class="btn btn-outline-primary col-lg-12" style="display: none;"
-                                        id="updateTestButton" onclick="updateTest()">
-                                        Update Test
+                                        id="updateAppointmentButton" onclick="updateAppointment()">
+                                        Update Appointment
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
 
 
@@ -266,116 +287,106 @@
         }
 
         // Call the function to fetch and bind the patient list
-        getAllTests();
+        getAllAppointment();
+
+        // Call these functions to load the select options when the page loads
+        loadPatients();
+        loadTests();
+        loadDoctors();
 
         function Logout() {
             localStorage.removeItem("tusername");
             window.location.href = 'login.html';
         }
 
-        function addTest() {
-            var testName = document.getElementById("testName").value;
-            var description = document.getElementById("description").value;
-            var price = document.getElementById("price").value;
+        function addAppointment() {
+            var patientID = document.getElementById("patientID").value;
+            var doctorID = document.getElementById("doctorID").value;
+            var appointmentDateTime = document.getElementById("appointmentDateTime").value;
 
-            var test = {
-                testName: testName,
-                description: description,
-                price: parseFloat(price) // Convert price to a floating-point number
+            var appointment = {
+                patientID: patientID,
+                doctorID: doctorID,
+                appointmentDateTime: appointmentDateTime
             };
 
-            fetch(baseUrl + '/LabAppointment-Service/resources/test/', {
+            fetch(baseUrl + '/LabAppointment-Service/resources/appointment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(test)
+                body: JSON.stringify(appointment)
             })
                 .then(response => {
                     if (response.ok) {
-                        swal("Test added successfully!", "", "success")
+                        swal("Appointment added successfully!", "", "success")
                             .then(() => {
-                                // Reload the table or perform any other necessary actions
-                                getAllTests();
-                                // Optionally, clear the form fields
-                                document.getElementById("testName").value = "";
-                                document.getElementById("description").value = "";
-                                document.getElementById("price").value = "";
+                                window.location.href = "appointment.html";
                             });
                     } else {
-                        swal("Failed to add test!", "Try again", "error");
+                        swal("Failed to add appointment!", "Try again", "error");
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    swal("Failed to add test!", "Try again", "error");
+                    swal("Failed to add appointment!", "Try again", "error");
                 });
         }
 
-        function updateTest() {
-            // Get the test ID from a hidden field or any other source
-            const testID = document.getElementById('testID').value;
+        function updateAppointment() {
+            var appointmentID = document.getElementById("appointmentID").value;
+            var patientID = document.getElementById("patientID").value;
+            var doctorID = document.getElementById("doctorID").value;
+            var appointmentDateTime = document.getElementById("appointmentDateTime").value;
 
-            // Create a test object with the data from the form fields
-            const test = {
-                testID: testID,
-                testName: document.getElementById('testName').value,
-                description: document.getElementById('description').value,
-                price: parseFloat(document.getElementById('price').value) // Convert price to a floating-point number
+            var appointment = {
+                appointmentID: appointmentID,
+                patientID: patientID,
+                doctorID: doctorID,
+                appointmentDateTime: appointmentDateTime
             };
 
-            // Make a PUT request to the updateTest endpoint
-            fetch(baseUrl + `/LabAppointment-Service/resources/test/${testID}`, {
+            fetch(baseUrl + `/LabAppointment-Service/resources/appointment/${appointmentID}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(test)
+                body: JSON.stringify(appointment)
             })
                 .then(response => {
                     if (response.ok) {
-                        swal("Test updated successfully!", "", "success")
+                        swal("Appointment updated successfully!", "", "success")
                             .then(() => {
-                                // Reload the table or perform any other necessary actions
-                                getAllTests();
-                                // Optionally, clear the form fields
-                                document.getElementById('testName').value = '';
-                                document.getElementById('description').value = '';
-                                document.getElementById('price').value = '';
-                                document.getElementById('addTestButton').style.display = 'block';
-                                document.getElementById('updateTestButton').style.display = 'none';
+                                window.location.href = "appointment.html";
                             });
                     } else {
-                        swal("Failed to update test!", "Try again", "error");
+                        swal("Failed to update appointment!", "Try again", "error");
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    swal("Failed to update test!", "Try again", "error");
+                    swal("Failed to update appointment!", "Try again", "error");
                 });
         }
 
-        function getAllTests() {
-            fetch(baseUrl + '/LabAppointment-Service/resources/test')
+        function getAllAppointments() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/appointment')
                 .then(response => response.json())
                 .then(data => {
-                    // Get the table body element
-                    const tbody = document.getElementById('tbody');
-                    // Clear existing table rows
+                    const tbody = document.getElementById('tbodyAppointments');
                     tbody.innerHTML = '';
 
-                    // Iterate over the data and create a row for each test
-                    data.forEach(test => {
+                    data.forEach(appointment => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                <td>${test.testID}</td>
-                <td>${test.testName}</td>
-                <td>${test.description}</td>
-                <td>${test.price}</td>
-                <td>
-                    <button onclick='TestEdit(${test.testID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button onclick='TestDelete(${test.testID})'><i class="fa-solid fa-trash"></i></button>
-                </td>`;
+                    <td>${appointment.appointmentID}</td>
+                    <td>${appointment.patientID}</td>
+                    <td>${appointment.doctorID}</td>
+                    <td>${appointment.appointmentDateTime}</td>
+                    <td>
+                        <button onclick='editAppointment(${appointment.appointmentID})'>Edit</button>
+                        <button onclick='deleteAppointment(${appointment.appointmentID})'>Delete</button>
+                    </td>`;
                         tbody.appendChild(tr);
                     });
                 })
@@ -384,51 +395,43 @@
                 });
         }
 
-        function TestEdit(testID) {
-            // Navigate to the 'test.html#addTest' URL
-            window.location.href = 'test.html#addTest';
+        function editAppointment(appointmentID) {
+            window.location.href = 'appointment.html#addAppointment';
 
-            // Change the text of the <h2> element to 'Edit Test'
-            document.getElementById('labelAdd').innerText = 'Edit Test';
+            document.getElementById('labelAdd').innerText = 'Edit Appointment';
 
-            document.getElementById('addTestButton').style.display = 'none';
-            document.getElementById('updateTestButton').style.display = 'block';
-            // Fetch the test data by ID
-            fetch(baseUrl + `/LabAppointment-Service/resources/test/${testID}`)
+            document.getElementById('addAppointmentButton').style.display = 'none';
+            document.getElementById('updateAppointmentButton').style.display = 'block';
+
+            fetch(baseUrl + `/LabAppointment-Service/resources/appointment/${appointmentID}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Populate the form fields with the test data
-                    document.getElementById('TestName').value = data.testName;
-                    document.getElementById('Description').value = data.description;
-                    document.getElementById('Price').value = data.price;
-                    document.getElementById('testID').value = data.testID;
-
-                    // Hide the 'Add Test' button and show the 'Update Test' button
+                    document.getElementById('patientID').value = data.patientID;
+                    document.getElementById('doctorID').value = data.doctorID;
+                    document.getElementById('appointmentDateTime').value = data.appointmentDateTime;
+                    document.getElementById('appointmentID').value = data.appointmentID;
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
         }
 
-        function TestDelete(testID) {
-            // Show SweetAlert confirm dialog
+        function deleteAppointment(appointmentID) {
             swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this test!",
+                text: "Once deleted, you will not be able to recover this appointment!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    // If confirmed, delete the test
-                    fetch(baseUrl + `/LabAppointment-Service/resources/test/${testID}`, {
+                    fetch(baseUrl + `/LabAppointment-Service/resources/appointment/${appointmentID}`, {
                         method: 'DELETE'
                     })
                         .then(response => {
                             if (response.ok) {
-                                // Reload the table after successful deletion
-                                getAllTests();
-                                swal("Poof! The test has been deleted!", {
+                                getAllAppointments();
+                                swal("Poof! The appointment has been deleted!", {
                                     icon: "success",
                                 });
                             } else {
@@ -444,9 +447,63 @@
                             });
                         });
                 } else {
-                    swal("The test is safe!");
+                    swal("The appointment is safe!");
                 }
             });
+        }
+
+        function loadPatients() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/patient')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('patientID');
+                    select.innerHTML = '';
+                    data.forEach(patient => {
+                        const option = document.createElement('option');
+                        option.value = patient.patientID;
+                        option.textContent = `${patient.firstName} ${patient.lastName}`;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function loadTests() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/test')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('testID');
+                    select.innerHTML = '';
+                    data.forEach(test => {
+                        const option = document.createElement('option');
+                        option.value = test.testID;
+                        option.textContent = test.testName;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function loadDoctors() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/doctor')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('doctorID');
+                    select.innerHTML = '';
+                    data.forEach(doctor => {
+                        const option = document.createElement('option');
+                        option.value = doctor.doctorID;
+                        option.textContent = `${doctor.firstName} ${doctor.lastName}`;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
 
     </script>
