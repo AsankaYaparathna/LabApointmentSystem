@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Lab Apointment System - Add Patient</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="../assets/img/favicon.png" rel="icon">
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-flex align-items-center fixed-top">
+        <div class="container d-flex justify-content-between">
+            <div class="contact-info d-flex align-items-center">
+                <i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+                <i class="bi bi-phone"></i> +1 5589 55488 55
+            </div>
+            <div class="d-none d-lg-flex social-links align-items-center">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto"><a href="index.html">Lab Apointment System</a></h1>
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="nav-link scrollto" href="index.html">Home</a></li>
+                    <li><a class="nav-link scrollto active" href="patient.html">Patients</a></li>
+                    <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
+                    <li><a class="nav-link scrollto" href="test.html">Test</a></li>
+                    <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
+                    <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+            <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span>
+                Appointment</a>
+
+            <a href="login.html" id="loginButton" class="appointment-btn scrollto"><span
+                    class="d-none d-md-inline">Login</span></a>
+
+            <button id="logoutButton" onclick="Logout()" class="appointment-btn scrollto"><span
+                    class="d-none d-md-inline" style="display: none;">Logout <i
+                        class="fa-solid fa-right-from-bracket"></i></span></button>
+
+        </div>
+    </header><!-- End Header -->
+
+
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+        <div class="container">
+            <h1>Welcome to <br> technician Portal</h1>
+            <h2>Manage everything here</h2>
+
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Why Us Section ======= -->
+        <section id="why-us" class="why-us">
+            <div class="container">
+
+                <div class="row">
+                
+                    <div class="col-lg-8 d-flex align-items-stretch">
+                        <div class="icon-boxes d-flex flex-column justify-content-center">
+                            <div class="row">
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <a href="#viewPatient">
+                                        <div class="icon-box mt-4 mt-xl-0">
+                                            <i class="bx bx-receipt"></i>
+                                            <h4>View Patients</h4>
+                                            <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi
+                                                ut
+                                                aliquip</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <a href="#addPatient">
+                                        <div class="icon-box mt-4 mt-xl-0">
+                                            <i class="bx bx-cube-alt"></i>
+                                            <h4>Add New Patient</h4>
+                                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                                deserunt</p>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <div class="col-xl-4 d-flex align-items-stretch">
+                                    <a href="#viewPatient">
+                                        <div class="icon-box mt-4 mt-xl-0">
+                                            <i class="bx bx-images"></i>
+                                            <h4>Edit / Delete Patient</h4>
+                                            <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis
+                                                facere</p>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div><!-- End .content-->
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Why Us Section -->
+
+
+        <!-- ======= Counts Section ======= -->
+        <section id="viewPatient" class="counts">
+            <div class="container">
+
+                <div class="row">
+
+                    <h2 class="text-center mb-3">Manage All Patients</h2>
+                    <div class="col-lg-12 col-md-12">
+                        <table class="table table-dark table-hover">
+                            <thead>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>DOB</th>
+                                <th>Gender</th>
+                                <th>Mobile No</th>
+                                <th>Email</th>
+                                <th>Adress</th>
+                                <th>User Name</th>
+                                <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td>Asanka</td>
+                                    <td>Yaparathna</td>
+                                    <td>1996-10-21</td>
+                                    <td>Male</td>
+                                    <td>0756019387</td>
+                                    <td>asankay@gmail.com</td>
+                                    <td>Kandy</td>
+                                    <td>asankay</td>
+                                    <td>
+                                        <button href=""><i class="fa-solid fa-pen-to-square"></i></button>
+                                        <button href=""><i class="fa-solid fa-trash"></i></i></button>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>002</td>
+                                    <td>Bob</td>
+                                    <td>Harizon</td>
+                                    <td>1998-05-21</td>
+                                    <td>Male</td>
+                                    <td>0717005871</td>
+                                    <td>bobh@gmail.com</td>
+                                    <td>Kandy</td>
+                                    <td>bobh</td>
+                                    <td>
+                                        <button href=""><i class="fa-solid fa-pen-to-square"></i></button>
+                                        <button href=""><i class="fa-solid fa-trash"></i></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Counts Section -->
+
+        <!-- ======= Services Section ======= -->
+        <section id="addPatient" class="services">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2 id="labelAdd">Add New Patient</h2>
+
+                </div>
+
+                <div class="row">
+                    <div class="row justify-content-md-center">
+
+                        <div class="col-lg-6 mt-5 mt-lg-0">
+                            <div class="card px-5 py-3 ">
+
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="FirstName" id="FirstName"
+                                        placeholder="First Name" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="LastName" id="LastName"
+                                        placeholder="Last Name" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <div class="row col-lg-12">
+                                        <div class="col-lg-6">
+                                            <input type="date" class="form-control" name="DateOfBirth" id="DateOfBirth"
+                                                placeholder="Date of Birth" required>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <select class="form-control" name="Gender" id="Gender" required>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="tel" class="form-control" name="ContactNumber" id="ContactNumber"
+                                        placeholder="Contact Number" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="email" class="form-control" name="Email" id="Email" placeholder="Email"
+                                        required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="Address" id="Address"
+                                        placeholder="Address" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="UserName" id="UserName"
+                                        placeholder="User Name" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <input type="password" class="form-control" name="Password" id="Password"
+                                        placeholder="Password" required>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button class="btn btn-outline-primary col-lg-12" onclick="Register()">Add
+                                        Patient</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Services Section -->
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Lab Apointment System</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <script>
+        var baseUrl = 'http://localhost:8080';
+
+        // Check if username exists in localStorage
+        if (!localStorage.getItem('tusername')) {
+            // If not, redirect to login page
+            window.location.href = 'login.html';
+        }
+        else {
+
+            const loginButton = document.getElementById('loginButton');
+            loginButton.style.display = 'none';
+
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.style.display = 'block';
+        }
+
+        function Logout() {
+            localStorage.removeItem("tusername");
+            window.location.href = 'login.html';
+        }
+
+
+        function Register() {
+            var firstName = document.getElementById("FirstName").value;
+            var lastName = document.getElementById("LastName").value;
+            var dateOfBirth = document.getElementById("DateOfBirth").value;
+            var gender = document.getElementById("Gender").value;
+            var contactNumber = document.getElementById("ContactNumber").value;
+            var email = document.getElementById("Email").value;
+            var address = document.getElementById("Address").value;
+            var userName = document.getElementById("UserName").value;
+            var password = document.getElementById("Password").value;
+
+            var patient = {
+                firstName: firstName,
+                lastName: lastName,
+                dateOfBirth: dateOfBirth,
+                gender: gender,
+                contactNumber: contactNumber,
+                email: email,
+                address: address,
+                userName: userName,
+                password: password
+            };
+
+            fetch(baseUrl + '/LabAppointment-Service/resources/patient/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(patient)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        swal("Patient adding successfully!", "", "success")
+                            .then(() => {
+                                window.location.href = "patient.html#viewPatient";
+                            });
+                    } else {
+                        swal("Failed to adding patient!", "Try again", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    swal("Failed to adding patient!", "Try again", "error");
+                });
+        }
+
+    </script>
+
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
