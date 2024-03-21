@@ -102,7 +102,7 @@
             <div class="container">
 
                 <div class="row">
-                
+
                     <div class="col-lg-8 d-flex align-items-stretch">
                         <div class="icon-boxes d-flex flex-column justify-content-center">
                             <div class="row">
@@ -111,9 +111,8 @@
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-receipt"></i>
                                             <h4>View Patients</h4>
-                                            <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi
-                                                ut
-                                                aliquip</p>
+                                            <p>View all registered patients and manage their information.</p>
+
                                         </div>
                                     </a>
                                 </div>
@@ -122,8 +121,8 @@
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-cube-alt"></i>
                                             <h4>Add New Patient</h4>
-                                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                                deserunt</p>
+                                            <p>Register a new patient by providing their details below.</p>
+
                                         </div>
                                     </a>
 
@@ -133,8 +132,8 @@
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-images"></i>
                                             <h4>Edit / Delete Patient</h4>
-                                            <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis
-                                                facere</p>
+                                            <p>Edit or delete an existing patient's information.</p>
+
                                         </div>
                                     </a>
 
@@ -169,8 +168,8 @@
                                 <th>User Name</th>
                                 <th>Action</th>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody id="tbody">
+                                <!-- <tr>
                                     <td>001</td>
                                     <td>Asanka</td>
                                     <td>Yaparathna</td>
@@ -181,8 +180,10 @@
                                     <td>Kandy</td>
                                     <td>asankay</td>
                                     <td>
-                                        <button href=""><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button href=""><i class="fa-solid fa-trash"></i></i></button>
+                                        <button onclick='PatientEdit(1)'><i
+                                                class="fa-solid fa-pen-to-square"></i></button>
+                                        <button onclick='PatientDelete(1)'><i
+                                                class="fa-solid fa-trash"></i></i></button>
                                     </td>
                                 </tr>
 
@@ -198,10 +199,12 @@
                                     <td>Kandy</td>
                                     <td>bobh</td>
                                     <td>
-                                        <button href=""><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button href=""><i class="fa-solid fa-trash"></i></i></button>
+                                        <button onclick='PatientEdit(1)'><i
+                                                class="fa-solid fa-pen-to-square"></i></button>
+                                        <button onclick='PatientDelete(1)'><i
+                                                class="fa-solid fa-trash"></i></i></button>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -217,7 +220,6 @@
 
                 <div class="section-title">
                     <h2 id="labelAdd">Add New Patient</h2>
-
                 </div>
 
                 <div class="row">
@@ -225,6 +227,8 @@
 
                         <div class="col-lg-6 mt-5 mt-lg-0">
                             <div class="card px-5 py-3 ">
+
+                                <input type="hidden" class="form-control" name="patientID" id="patientID" required>
 
                                 <div class="form-group mt-3">
                                     <input type="text" class="form-control" name="FirstName" id="FirstName"
@@ -274,8 +278,15 @@
                                         placeholder="Password" required>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button class="btn btn-outline-primary col-lg-12" onclick="Register()">Add
-                                        Patient</button>
+                                    <button class="btn btn-outline-primary col-lg-12" onclick="Register()" id="registerButton">
+                                        Add Patient
+                                    </button>
+
+                                    <button class="btn btn-outline-primary col-lg-12" style="display: none;"
+                                        id="updateButton"
+                                        onclick="Update()">
+                                        Update Patient
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -330,11 +341,13 @@
             logoutButton.style.display = 'block';
         }
 
+        // Call the function to fetch and bind the patient list
+        getAllPatients();
+
         function Logout() {
             localStorage.removeItem("tusername");
             window.location.href = 'login.html';
         }
-
 
         function Register() {
             var firstName = document.getElementById("FirstName").value;
@@ -379,6 +392,157 @@
                 .catch(error => {
                     console.error('Error:', error);
                     swal("Failed to adding patient!", "Try again", "error");
+                });
+        }
+
+        function getAllPatients() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/patient')
+                .then(response => response.json())
+                .then(data => {
+                    // Get the table body element
+                    const tbody = document.getElementById('tbody');
+                    // Clear existing table rows
+                    tbody.innerHTML = '';
+
+                    // Iterate over the data and create a row for each patient
+                    data.forEach(patient => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                        <td>${patient.patientID}</td>
+                        <td>${patient.firstName}</td>
+                        <td>${patient.lastName}</td>
+                        <td>${patient.dateOfBirth}</td>
+                        <td>${patient.gender}</td>
+                        <td>${patient.contactNumber}</td>
+                        <td>${patient.email}</td>
+                        <td>${patient.address}</td>
+                        <td>${patient.userName}</td>
+                        <td>
+                            <button onclick='PatientEdit(${patient.patientID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button onclick='PatientDelete(${patient.patientID})'><i class="fa-solid fa-trash"></i></button>
+                        </td> `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function PatientDelete(patientID) {
+            // Show SweetAlert confirm dialog
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this patient!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    // If confirmed, delete the patient
+                    fetch(baseUrl + `/LabAppointment-Service/resources/patient/${patientID}`, {
+                        method: 'DELETE'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                // Reload the table after successful deletion
+                                getAllPatients();
+                                swal("Poof! The patient has been deleted!", {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal("Oops! Something went wrong.", {
+                                    icon: "error",
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            swal("Oops! Something went wrong.", {
+                                icon: "error",
+                            });
+                        });
+                } else {
+                    swal("The patient is safe!");
+                }
+            });
+        }
+
+        function PatientEdit(patientID) {
+            // Navigate to the 'patient.html#addPatient' URL
+            window.location.href = 'patient.html#addPatient';
+
+            // Change the text of the <h2> element to 'Edit Patient'
+            document.getElementById('labelAdd').innerText = 'Edit Patient';
+
+            document.getElementById('registerButton').style.display = 'none';
+            document.getElementById('updateButton').style.display = 'block';
+            // Fetch the patient data by ID
+            fetch(baseUrl + `/LabAppointment-Service/resources/patient/${patientID}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Populate the form fields with the patient data
+                    document.getElementById('FirstName').value = data.firstName;
+                    document.getElementById('LastName').value = data.lastName;
+                    document.getElementById('DateOfBirth').value = data.dateOfBirth;
+                    document.getElementById('Gender').value = data.gender;
+                    document.getElementById('ContactNumber').value = data.contactNumber;
+                    document.getElementById('Email').value = data.email;
+                    document.getElementById('Address').value = data.address;
+                    document.getElementById('UserName').value = data.userName;
+                    document.getElementById('Password').value = data.password;
+                    document.getElementById('patientID').value = data.patientID;
+
+                    // Hide the 'Add Patient' button and show the 'Update Patient' button
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function Update() {
+            // Get the patient ID from hidden field
+            const patientID = document.getElementById('patientID').value;
+
+            // Create a patient object with the data from the form fields
+            const patient = {
+                patientID: patientID,
+                firstName: document.getElementById('FirstName').value,
+                lastName: document.getElementById('LastName').value,
+                dateOfBirth: document.getElementById('DateOfBirth').value,
+                gender: document.getElementById('Gender').value,
+                contactNumber: document.getElementById('ContactNumber').value,
+                email: document.getElementById('Email').value,
+                address: document.getElementById('Address').value,
+                userName: document.getElementById('UserName').value,
+                password: document.getElementById('Password').value
+            };
+
+            // Make a PUT request to the updatePatient endpoint
+            fetch(baseUrl + `/LabAppointment-Service/resources/patient/${patientID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(patient)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        swal("Patient Update successfully!", "", "success")
+                            .then(() => {
+                                document.getElementById('labelAdd').innerText = 'Add New Patient';
+                                document.getElementById('registerButton').style.display = 'block';
+                                document.getElementById('updateButton').style.display = 'none';
+                                // If the update was successful, navigate back to the patient list page
+                                window.location.href = 'patient.html';
+                            });
+                    } else {
+                        swal("Failed to Update patient!", "Try again", "error");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    swal("Failed to Update patient!", "Try again", "error");
                 });
         }
 
