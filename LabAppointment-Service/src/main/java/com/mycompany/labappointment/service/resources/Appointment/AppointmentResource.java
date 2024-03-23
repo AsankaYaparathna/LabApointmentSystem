@@ -5,6 +5,8 @@
 package com.mycompany.labappointment.service.resources.Appointment;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mycompany.labappointment.service.resources.Utility.LocalDateTimeAdapter;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -15,6 +17,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 /**
@@ -30,6 +33,7 @@ public class AppointmentResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllAppointments() {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             AppointmentRepo appointmentRepo = new AppointmentRepo();
             return Response.ok(gson.toJson(appointmentRepo.getAllAppointments())).build();
         } catch (Exception e) {
@@ -43,6 +47,7 @@ public class AppointmentResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAppointmentById(@PathParam("id") int id) {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             AppointmentRepo appointmentRepo = new AppointmentRepo();
             Appointment appointment = appointmentRepo.getAppointmentByID(id);
             if (appointment != null) {
@@ -59,6 +64,8 @@ public class AppointmentResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addAppointment(String json) {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
+
             Appointment model = gson.fromJson(json, Appointment.class);
             // Perform input validation here if needed
             new AppointmentRepo().addAppointment(model);
@@ -74,6 +81,7 @@ public class AppointmentResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateAppointment(String json, @PathParam("id") int id) {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             Appointment model = gson.fromJson(json, Appointment.class);
             // Perform input validation here if needed
             model.setAppointmentID(id);

@@ -16,7 +16,8 @@ public class Report {
     private int testID;
     private LocalDateTime reportDate;
     private byte[] reportFile;
-
+    private String reportDetails;
+    
     public int getReportID() {
         return reportID;
     }
@@ -55,5 +56,13 @@ public class Report {
 
     public void setReportFile(byte[] reportFile) {
         this.reportFile = reportFile;
+    }
+    
+    public String getReportDetails() {
+        return reportDetails;
+    }
+
+    public void setReportDetails(String reportDetails) {
+        this.reportDetails = reportDetails;
     }
 }

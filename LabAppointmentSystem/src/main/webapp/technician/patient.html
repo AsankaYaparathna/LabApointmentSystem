@@ -64,8 +64,8 @@
                     <li><a class="nav-link scrollto active" href="patient.html">Patients</a></li>
                     <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
                     <li><a class="nav-link scrollto" href="test.html">Test</a></li>
+                    <li><a class="nav-link scrollto" href="report.html">Report</a></li>
                     <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
-                    <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -168,8 +168,7 @@
                                 <th>User Name</th>
                                 <th>Action</th>
                             </thead>
-                            <tbody id="tbody">
-                            </tbody>
+                            <tbody id="tbody"> </tbody>
                         </table>
                     </div>
 
@@ -211,9 +210,9 @@
 
                                         <div class="col-lg-6">
                                             <select class="form-control" name="Gender" id="Gender" required>
-                                                <option value="MALE">Male</option>
-                                                <option value="FEMALE">Female</option>
-                                                <option value="OTHER">Other</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
                                             </select>
                                         </div>
                                     </div>
@@ -347,6 +346,7 @@
                     if (response.ok) {
                         swal("Patient adding successfully!", "", "success")
                             .then(() => {
+                                getAllPatients();
                                 window.location.href = "patient.html#viewPatient";
                             });
                     } else {
@@ -367,7 +367,6 @@
                     const tbody = document.getElementById('tbody');
                     // Clear existing table rows
                     tbody.innerHTML = '';
-
                     // Iterate over the data and create a row for each patient
                     data.forEach(patient => {
                         const tr = document.createElement('tr');
@@ -454,7 +453,7 @@
                     document.getElementById('Email').value = data.email;
                     document.getElementById('Address').value = data.address;
                     document.getElementById('UserName').value = data.userName;
-                    document.getElementById('Password').value = data.password;
+                    //document.getElementById('Password').value = data.password;
                     document.getElementById('patientID').value = data.patientID;
 
                     // Hide the 'Add Patient' button and show the 'Update Patient' button
@@ -494,6 +493,7 @@
                     if (response.ok) {
                         swal("Patient Update successfully!", "", "success")
                             .then(() => {
+                                getAllPatients();
                                 document.getElementById('labelAdd').innerText = 'Add New Patient';
                                 document.getElementById('registerButton').style.display = 'block';
                                 document.getElementById('updateButton').style.display = 'none';

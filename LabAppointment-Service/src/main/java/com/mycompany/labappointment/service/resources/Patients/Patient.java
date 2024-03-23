@@ -23,7 +23,7 @@ public class Patient {
     private String password;
     
     public enum Gender {
-        MALE, FEMALE, OTHER
+        Male, Female, Other
     }
     
     public int getPatientID() {

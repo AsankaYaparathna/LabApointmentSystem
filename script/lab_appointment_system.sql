@@ -49,6 +49,19 @@ CREATE TABLE Doctors (
     Email VARCHAR(255)
 );
 
+-- CREATE TABLE Appointments (
+--     AppointmentID INT PRIMARY KEY AUTO_INCREMENT,
+--     PatientID INT,
+--     TestID INT,
+--     TechnicianID INT,
+--     DoctorID INT,
+--     AppointmentDateTime DATETIME,
+--     FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+--     FOREIGN KEY (TestID) REFERENCES Tests(TestID),
+--     FOREIGN KEY (TechnicianID) REFERENCES Technicians(TechnicianID),
+--     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
+-- );
+
 CREATE TABLE Appointments (
     AppointmentID INT PRIMARY KEY AUTO_INCREMENT,
     PatientID INT,
@@ -58,7 +71,6 @@ CREATE TABLE Appointments (
     AppointmentDateTime DATETIME,
     FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
     FOREIGN KEY (TestID) REFERENCES Tests(TestID),
-    FOREIGN KEY (TechnicianID) REFERENCES Technicians(TechnicianID),
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
 );
 
@@ -77,6 +89,7 @@ CREATE TABLE Reports (
     TestID INT,
     ReportDate DATETIME,
     ReportFile BLOB,
+    ReportDetails TEXT,
     FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
     FOREIGN KEY (TestID) REFERENCES Tests(TestID)
 );

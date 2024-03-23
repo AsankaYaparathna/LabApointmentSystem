@@ -64,8 +64,8 @@
                     <li><a class="nav-link scrollto" href="patient.html">Patients</a></li>
                     <li><a class="nav-link scrollto active" href="doctor.html">Doctor</a></li>
                     <li><a class="nav-link scrollto" href="test.html">Test</a></li>
+                    <li><a class="nav-link scrollto" href="report.html">Report</a></li>
                     <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
-                    <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -338,6 +338,11 @@
                     if (response.ok) {
                         swal("Doctor added successfully!", "", "success")
                             .then(() => {
+                                getAllDoctors();
+                                document.getElementById("FirstName").value = "";
+                                document.getElementById("LastName").value = "";
+                                document.getElementById("ContactNumber").value = "";
+                                document.getElementById("Email").value = "";
                                 window.location.href = "doctor.html#viewDoctor";
                             });
                     } else {
@@ -375,9 +380,16 @@
                     if (response.ok) {
                         swal("Doctor updated successfully!", "", "success")
                             .then(() => {
+                                getAllDoctors();
                                 document.getElementById('labelAdd').innerText = 'Add New Doctor';
                                 document.getElementById('addDoctorButton').style.display = 'block';
                                 document.getElementById('updateDoctorButton').style.display = 'none';
+                                
+                                document.getElementById("FirstName").value = "";
+                                document.getElementById("LastName").value = "";
+                                document.getElementById("ContactNumber").value = "";
+                                document.getElementById("Email").value = "";
+
                                 // If the update was successful, navigate back to the doctor list page
                                 window.location.href = 'doctor.html';
                             });

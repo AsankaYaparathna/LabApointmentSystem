@@ -9,9 +9,15 @@ package com.mycompany.labappointment.service.resources.Reports;
  * @author shakyapa
  */
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mycompany.labappointment.service.resources.Utility.LocalDateTimeAdapter;
+
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
+import java.time.LocalDateTime;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,6 +30,7 @@ public class ReportResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllReports() {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             ReportRepo reportRepo = new ReportRepo();
             return Response.ok(gson.toJson(reportRepo.getAllReports())).build();
         } catch (Exception e) {
@@ -37,6 +44,7 @@ public class ReportResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getReportById(@PathParam("id") int id) {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             ReportRepo reportRepo = new ReportRepo();
             Report report = reportRepo.getReportByID(id);
             if (report != null) {
@@ -53,6 +61,7 @@ public class ReportResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addReport(String json) {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             Report model = gson.fromJson(json, Report.class);
             // Perform input validation here if needed
             new ReportRepo().addReport(model);
@@ -68,6 +77,7 @@ public class ReportResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateReport(String json, @PathParam("id") int id) {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             Report model = gson.fromJson(json, Report.class);
             // Perform input validation here if needed
             model.setReportID(id);

@@ -27,14 +27,14 @@ public class ReportRepo {
 
     public boolean addReport(Report report) {
         try {
-            try (Connection conn = dbConn.getConnection(); 
-                    PreparedStatement stmt = conn.prepareStatement(
-                            "INSERT INTO Reports (PatientID, TestID, ReportDate, ReportFile) VALUES (?, ?, ?, ?);",
-                            Statement.RETURN_GENERATED_KEYS)) {
+            try (Connection conn = dbConn.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(
+                         "INSERT INTO Reports (PatientID, TestID, ReportDate, ReportDetails) VALUES (?, ?, ?, ?);",
+                         Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setInt(1, report.getPatientID());
                 stmt.setInt(2, report.getTestID());
                 stmt.setObject(3, report.getReportDate());
-                stmt.setBytes(4, report.getReportFile());
+                stmt.setString(4, report.getReportDetails());
                 stmt.executeUpdate();
                 ResultSet rs = stmt.getGeneratedKeys();
                 if (rs.next()) {
@@ -49,7 +49,7 @@ public class ReportRepo {
         }
         return false;
     }
-
+    
     public Report getReportByID(int reportID) {
         try {
             try (Connection conn = dbConn.getConnection(); 
@@ -62,7 +62,7 @@ public class ReportRepo {
                     report.setPatientID(rs.getInt("PatientID"));
                     report.setTestID(rs.getInt("TestID"));
                     report.setReportDate(rs.getObject("ReportDate", LocalDateTime.class));
-                    report.setReportFile(rs.getBytes("ReportFile"));
+                    report.setReportDetails(rs.getString("ReportDetails"));
                     return report;
                 }
             }
@@ -78,11 +78,11 @@ public class ReportRepo {
         try {
             try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
-                            "UPDATE Reports SET PatientID = ?, TestID = ?, ReportDate = ?, ReportFile = ? WHERE ReportID = ?")) {
+                            "UPDATE Reports SET PatientID = ?, TestID = ?, ReportDate = ?, ReportDetails = ? WHERE ReportID = ?")) {
                 stmt.setInt(1, report.getPatientID());
                 stmt.setInt(2, report.getTestID());
                 stmt.setObject(3, report.getReportDate());
-                stmt.setBytes(4, report.getReportFile());
+                stmt.setString(4, report.getReportDetails());
                 stmt.setInt(5, report.getReportID());
                 int rowsUpdated = stmt.executeUpdate();
                 return rowsUpdated > 0;
@@ -123,7 +123,7 @@ public class ReportRepo {
                     report.setPatientID(rs.getInt("PatientID"));
                     report.setTestID(rs.getInt("TestID"));
                     report.setReportDate(rs.getObject("ReportDate", LocalDateTime.class));
-                    report.setReportFile(rs.getBytes("ReportFile"));
+                    report.setReportDetails(rs.getString("ReportDetails"));
                     reports.add(report);
                 }
             }

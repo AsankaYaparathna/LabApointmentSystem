@@ -64,8 +64,8 @@
                     <li><a class="nav-link scrollto" href="patient.html">Patients</a></li>
                     <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
                     <li><a class="nav-link scrollto" href="test.html">Test</a></li>
+                    <li><a class="nav-link scrollto" href="report.html">Report</a></li>
                     <li><a class="nav-link scrollto active" href="apointment.html">Apointment</a></li>
-                    <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -160,7 +160,7 @@
                                 <th>ID</th>
                                 <th>Patient ID</th>
                                 <th>Test ID</th>
-                                <th>Techcnician ID</th>
+                                <!-- <th>Techcnician ID</th> -->
                                 <th>Doctor ID</th>
                                 <th>Apointment Date</th>
                                 <th>Action</th>
@@ -194,13 +194,12 @@
                                 <div class="form-group mt-3">
                                     <label for="patientID">Select Patient:</label>
                                     <select class="form-control" name="patientID" id="patientID" required>
-                                        <!-- Patient options will be loaded dynamically -->
                                     </select>
                                 </div>
 
                                 <!-- Select Test -->
                                 <div class="form-group mt-3">
-                                    <label for="doctorID">Select Test:</label>
+                                    <label for="testID">Select Test:</label>
                                     <select class="form-control" name="testID" id="testID" required>
                                         <!-- Doctor options will be loaded dynamically -->
                                     </select>
@@ -287,7 +286,7 @@
         }
 
         // Call the function to fetch and bind the patient list
-        getAllAppointment();
+        getAllAppointments();
 
         // Call these functions to load the select options when the page loads
         loadPatients();
@@ -302,11 +301,13 @@
         function addAppointment() {
             var patientID = document.getElementById("patientID").value;
             var doctorID = document.getElementById("doctorID").value;
+            var testID = document.getElementById("testID").value;
             var appointmentDateTime = document.getElementById("appointmentDateTime").value;
 
             var appointment = {
                 patientID: patientID,
                 doctorID: doctorID,
+                testID: testID,
                 appointmentDateTime: appointmentDateTime
             };
 
@@ -321,7 +322,7 @@
                     if (response.ok) {
                         swal("Appointment added successfully!", "", "success")
                             .then(() => {
-                                window.location.href = "appointment.html";
+                                window.location.href = "apointment.html";
                             });
                     } else {
                         swal("Failed to add appointment!", "Try again", "error");
@@ -337,12 +338,14 @@
             var appointmentID = document.getElementById("appointmentID").value;
             var patientID = document.getElementById("patientID").value;
             var doctorID = document.getElementById("doctorID").value;
+            var testID = document.getElementById("testID").value;
             var appointmentDateTime = document.getElementById("appointmentDateTime").value;
 
             var appointment = {
                 appointmentID: appointmentID,
                 patientID: patientID,
                 doctorID: doctorID,
+                testID: testID,
                 appointmentDateTime: appointmentDateTime
             };
 
@@ -357,7 +360,7 @@
                     if (response.ok) {
                         swal("Appointment updated successfully!", "", "success")
                             .then(() => {
-                                window.location.href = "appointment.html";
+                                window.location.href = "apointment.html";
                             });
                     } else {
                         swal("Failed to update appointment!", "Try again", "error");
@@ -373,7 +376,7 @@
             fetch(baseUrl + '/LabAppointment-Service/resources/appointment')
                 .then(response => response.json())
                 .then(data => {
-                    const tbody = document.getElementById('tbodyAppointments');
+                    const tbody = document.getElementById('tbody');
                     tbody.innerHTML = '';
 
                     data.forEach(appointment => {
@@ -381,11 +384,12 @@
                         tr.innerHTML = `
                     <td>${appointment.appointmentID}</td>
                     <td>${appointment.patientID}</td>
+                    <td>${appointment.testID}</td>
                     <td>${appointment.doctorID}</td>
                     <td>${appointment.appointmentDateTime}</td>
                     <td>
-                        <button onclick='editAppointment(${appointment.appointmentID})'>Edit</button>
-                        <button onclick='deleteAppointment(${appointment.appointmentID})'>Delete</button>
+                        <button onclick='editAppointment(${appointment.appointmentID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick='deleteAppointment(${appointment.appointmentID})'><i class="fa-solid fa-trash"></i></button>
                     </td>`;
                         tbody.appendChild(tr);
                     });
@@ -396,7 +400,7 @@
         }
 
         function editAppointment(appointmentID) {
-            window.location.href = 'appointment.html#addAppointment';
+            window.location.href = 'apointment.html#addAppointment';
 
             document.getElementById('labelAdd').innerText = 'Edit Appointment';
 

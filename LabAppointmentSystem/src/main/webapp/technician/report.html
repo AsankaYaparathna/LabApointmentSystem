@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Lab Apointment System - Test Result</title>
+    <title>Lab Apointment System - Report</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -62,10 +62,10 @@
                 <ul>
                     <li><a class="nav-link scrollto" href="index.html">Home</a></li>
                     <li><a class="nav-link scrollto" href="patient.html">Patients</a></li>
-                    <li><a class="nav-link scrollto active" href="doctor.html">Doctor</a></li>
+                    <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
                     <li><a class="nav-link scrollto" href="test.html">Test</a></li>
+                    <li><a class="nav-link scrollto active" href="report.html">Report</a></li>
                     <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
-                    <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -110,18 +110,18 @@
                                     <a href="#viewTestResult">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-receipt"></i>
-                                            <h4>View Test Results</h4>
-                                            <p>View all registered Test Results and manage their information.</p>
+                                            <h4>View Report</h4>
+                                            <p>View all registered Report and manage their information.</p>
 
                                         </div>
                                     </a>
                                 </div>
                                 <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#addTestResult">
+                                    <a href="#addReport">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-cube-alt"></i>
-                                            <h4>Add New Test Result</h4>
-                                            <p>Register a new Test Result by providing their details below.</p>
+                                            <h4>Add New Report</h4>
+                                            <p>Register a new Report by providing their details below.</p>
 
                                         </div>
                                     </a>
@@ -131,8 +131,8 @@
                                     <a href="#viewTestResult">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-images"></i>
-                                            <h4>Edit / Delete Test Result</h4>
-                                            <p>Edit or delete an existing Test Result's information.</p>
+                                            <h4>Edit / Delete Report</h4>
+                                            <p>Edit or delete an existing Report's information.</p>
 
                                         </div>
                                     </a>
@@ -153,7 +153,7 @@
 
                 <div class="row">
 
-                    <h2 class="text-center mb-3">Manage All Test Results</h2>
+                    <h2 class="text-center mb-3">Manage All Reports</h2>
                     <div class="col-lg-12 col-md-12">
                         <table class="table table-dark table-hover">
                             <thead>
@@ -165,7 +165,7 @@
                                 <th>Action</th>
                             </thead>
                             <tbody id="tbody">
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -176,51 +176,68 @@
         </section><!-- End Counts Section -->
 
         <!-- ======= Services Section ======= -->
-        <section id="addTestResult" class="services">
+        <section id="addReport" class="services">
             <div class="container">
 
                 <div class="section-title">
-                    <h2 id="labelAdd">Add New Test Result</h2>
+                    <h2 id="labelAdd">Add New Report</h2>
                 </div>
 
                 <div class="row">
                     <div class="row justify-content-md-center">
                         <div class="col-lg-6 mt-5 mt-lg-0">
                             <div class="card px-5 py-3 ">
+                                <input type="hidden" class="form-control" name="reportID" id="reportID" required>
 
-                                <input type="hidden" class="form-control" name="doctorID" id="doctorID" required>
+                                <!-- <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="patientID" id="patientID"
+                                        placeholder="Patient ID" required>
+                                </div> -->
 
                                 <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="FirstName" id="FirstName"
-                                        placeholder="First Name" required>
+                                    <label for="patientID">Select Patient:</label>
+                                    <select class="form-control" name="patientID" id="patientID" required>
+                                    </select>
                                 </div>
+
+                                <!-- Select Test -->
                                 <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="LastName" id="LastName"
-                                        placeholder="Last Name" required>
+                                    <label for="testID">Select Test:</label>
+                                    <select class="form-control" name="testID" id="testID" required>
+                                    </select>
                                 </div>
+                                <!-- <div class="form-group mt-3">
+                                    <input type="text" class="form-control" name="testID" id="testID"
+                                        placeholder="Test ID" required>
+                                </div> -->
                                 <div class="form-group mt-3">
-                                    <input type="tel" class="form-control" name="ContactNumber" id="ContactNumber"
-                                        placeholder="Contact Number" required>
+                                    <input type="datetime-local" class="form-control" name="reportDate" id="reportDate"
+                                        placeholder="Report Date" required>
                                 </div>
+                                <!-- <div class="form-group mt-3">
+                                    <input type="file" class="form-control" name="reportFile" id="reportFile"
+                                        placeholder="Report File" required>
+                                </div> -->
                                 <div class="form-group mt-3">
-                                    <input type="email" class="form-control" name="Email" id="Email" placeholder="Email"
-                                        required>
+                                    <textarea class="form-control" name="reportDetails" id="reportDetails"
+                                        placeholder="Report Details" required></textarea>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button class="btn btn-outline-primary col-lg-12" onclick="addDoctor()"
-                                        id="addDoctorButton">
-                                        Add Doctor
+                                    <button class="btn btn-outline-primary col-lg-12" onclick="addReport()"
+                                        id="addReportButton">
+                                        Add Report
                                     </button>
 
                                     <button class="btn btn-outline-primary col-lg-12" style="display: none;"
-                                        id="updateDoctorButton" onclick="updateDoctor()">
-                                        Update Doctor
+                                        id="updateReportButton" onclick="updateReport()">
+                                        Update Report
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
 
             </div>
@@ -271,93 +288,106 @@
             logoutButton.style.display = 'block';
         }
 
-        // Call the function to fetch and bind the patient list
-        getAllDoctors();
+        // Call the function to fetch and bind the report lis
+        getAllReports();
+        loadPatients();
+        loadTests();
 
         function Logout() {
             localStorage.removeItem("tusername");
             window.location.href = 'login.html';
         }
 
-        function addDoctor() {
-            var firstName = document.getElementById("FirstName").value;
-            var lastName = document.getElementById("LastName").value;
-            var contactNumber = document.getElementById("ContactNumber").value;
-            var email = document.getElementById("Email").value;
-
-            var doctor = {
-                firstName: firstName,
-                lastName: lastName,
-                contactNumber: contactNumber,
-                email: email
+        function addReport() {
+            var patientID = document.getElementById("patientID").value;
+            var testID = document.getElementById("testID").value;
+            var reportDate = document.getElementById("reportDate").value;
+            //var reportFile = document.getElementById("reportFile").files[0];
+            var reportDetails = document.getElementById("reportDetails").value;
+            debugger;
+            
+            var report = {
+                patientID: patientID,
+                testID: testID,
+                reportDate: reportDate,
+                reportDetails: reportDetails
             };
 
-            fetch(baseUrl + '/LabAppointment-Service/resources/doctor/', {
+            fetch(baseUrl + '/LabAppointment-Service/resources/report/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(doctor)
+                body: JSON.stringify(report)
             })
                 .then(response => {
                     if (response.ok) {
-                        swal("Doctor added successfully!", "", "success")
+                        swal("Report added successfully!", "", "success")
                             .then(() => {
-                                window.location.href = "doctor.html#viewDoctor";
+                                getAllReports();
+                                window.location.href = "report.html#viewReport";
                             });
                     } else {
-                        swal("Failed to add doctor!", "Try again", "error");
+                        swal("Failed to add report!", "Try again", "error");
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    swal("Failed to add doctor!", "Try again", "error");
+                    swal("Failed to add report!", "Try again", "error");
                 });
         }
 
-        function updateDoctor() {
-            // Get the doctor ID from hidden field
-            const doctorID = document.getElementById('doctorID').value;
+        function updateReport() {
+            // Get the report ID from hidden field
+            const reportID = document.getElementById('reportID').value;
 
-            // Create a doctor object with the data from the form fields
-            const doctor = {
-                doctorID: doctorID,
-                firstName: document.getElementById('FirstName').value,
-                lastName: document.getElementById('LastName').value,
-                contactNumber: document.getElementById('ContactNumber').value,
-                email: document.getElementById('Email').value
+            // Create a report object with the data from the form fields
+            const report = {
+                reportID: reportID,
+                patientID: document.getElementById('patientID').value,
+                testID: document.getElementById('testID').value,
+                reportDate: document.getElementById('reportDate').value,
+                reportFile: document.getElementById('reportFile').files[0],
+                reportDetails: document.getElementById('reportDetails').value
             };
 
-            // Make a PUT request to the updateDoctor endpoint
-            fetch(baseUrl + `/LabAppointment-Service/resources/doctor/${doctorID}`, {
+            // Create a FormData object to handle file upload
+            const formData = new FormData();
+            formData.append('reportID', report.reportID);
+            formData.append('patientID', report.patientID);
+            formData.append('testID', report.testID);
+            formData.append('reportDate', report.reportDate);
+            formData.append('reportFile', report.reportFile);
+            formData.append('reportDetails', report.reportDetails);
+
+            // Make a PUT request to the updateReport endpoint
+            fetch(baseUrl + `/LabAppointment-Service/resources/report/${reportID}`, {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(doctor)
+                body: formData
             })
                 .then(response => {
                     if (response.ok) {
-                        swal("Doctor updated successfully!", "", "success")
+                        swal("Report updated successfully!", "", "success")
                             .then(() => {
-                                document.getElementById('labelAdd').innerText = 'Add New Doctor';
-                                document.getElementById('addDoctorButton').style.display = 'block';
-                                document.getElementById('updateDoctorButton').style.display = 'none';
-                                // If the update was successful, navigate back to the doctor list page
-                                window.location.href = 'doctor.html';
+                                getAllReports();
+                                document.getElementById('labelAdd').innerText = 'Add New Report';
+                                document.getElementById('addReportButton').style.display = 'block';
+                                document.getElementById('updateReportButton').style.display = 'none';
+                                // If the update was successful, navigate back to the report list page
+                                window.location.href = 'report.html';
                             });
                     } else {
-                        swal("Failed to update doctor!", "Try again", "error");
+                        swal("Failed to update report!", "Try again", "error");
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    swal("Failed to update doctor!", "Try again", "error");
+                    swal("Failed to update report!", "Try again", "error");
                 });
         }
 
-        function getAllDoctors() {
-            fetch(baseUrl + '/LabAppointment-Service/resources/doctor')
+        function getAllReports() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/report')
                 .then(response => response.json())
                 .then(data => {
                     // Get the table body element
@@ -365,19 +395,19 @@
                     // Clear existing table rows
                     tbody.innerHTML = '';
 
-                    // Iterate over the data and create a row for each doctor
-                    data.forEach(doctor => {
+                    // Iterate over the data and create a row for each report
+                    data.forEach(report => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                <td>${doctor.doctorID}</td>
-                <td>${doctor.firstName}</td>
-                <td>${doctor.lastName}</td>
-                <td>${doctor.contactNumber}</td>
-                <td>${doctor.email}</td>
-                <td>
-                    <button onclick='DoctorEdit(${doctor.doctorID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button onclick='DoctorDelete(${doctor.doctorID})'><i class="fa-solid fa-trash"></i></button>
-                </td> `;
+                    <td>${report.reportID}</td>
+                    <td>${report.patientID}</td>
+                    <td>${report.testID}</td>
+                    <td>${report.reportDate}</td>
+                    <td>${report.reportDetails}</td>
+                    <td>
+                        <button onclick='editReport(${report.reportID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button onclick='deleteReport(${report.reportID})'><i class="fa-solid fa-trash"></i></button>
+                    </td>`;
                         tbody.appendChild(tr);
                     });
                 })
@@ -386,27 +416,27 @@
                 });
         }
 
-        function DoctorDelete(doctorID) {
-            // Show SweetAlert confirm dialog
+        function deleteReport(reportID) {
             swal({
                 title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this doctor!",
+                text: "Once deleted, you will not be able to recover this report!",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
-                    // If confirmed, delete the doctor
-                    fetch(baseUrl + `/LabAppointment-Service/resources/doctor/${doctorID}`, {
+                    fetch(baseUrl + `/LabAppointment-Service/resources/report/${reportID}`, {
                         method: 'DELETE'
                     })
                         .then(response => {
                             if (response.ok) {
-                                // Reload the table after successful deletion
-                                getAllDoctors();
-                                swal("Poof! The doctor has been deleted!", {
+                                swal("Poof! The report has been deleted!", {
                                     icon: "success",
-                                });
+                                })
+                                    .then(() => {
+                                        // Reload the reports table after successful deletion
+                                        getAllReports();
+                                    });
                             } else {
                                 swal("Oops! Something went wrong.", {
                                     icon: "error",
@@ -420,32 +450,67 @@
                             });
                         });
                 } else {
-                    swal("The doctor is safe!");
+                    swal("The report is safe!");
                 }
             });
         }
 
-        function DoctorEdit(doctorID) {
-            // Navigate to the 'doctor.html#addDoctor' URL
-            window.location.href = 'doctor.html#addDoctor';
+        function editReport(reportID) {
+            // Navigate to the 'edit_report.html' URL with the reportID as a query parameter
+            window.location.href = `report.html#addReport`;
 
-            // Change the text of the <h2> element to 'Edit Doctor'
-            document.getElementById('labelAdd').innerText = 'Edit Doctor';
+            // Hide the 'Add Report' button and show the 'Update Report' button
+            document.getElementById('addReportButton').style.display = 'none';
+            document.getElementById('updateReportButton').style.display = 'block';
 
-            document.getElementById('addDoctorButton').style.display = 'none';
-            document.getElementById('updateDoctorButton').style.display = 'block';
-            // Fetch the doctor data by ID
-            fetch(baseUrl + `/LabAppointment-Service/resources/doctor/${doctorID}`)
+            // Fetch the report data by ID
+            fetch(baseUrl + `/LabAppointment-Service/resources/report/${reportID}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Populate the form fields with the doctor data
-                    document.getElementById('FirstName').value = data.firstName;
-                    document.getElementById('LastName').value = data.lastName;
-                    document.getElementById('ContactNumber').value = data.contactNumber;
-                    document.getElementById('Email').value = data.email;
-                    document.getElementById('doctorID').value = data.doctorID;
+                    // Populate the form fields with the report data
+                    document.getElementById('patientID').value = data.patientID;
+                    document.getElementById('testID').value = data.testID;
+                    document.getElementById('reportDate').value = data.reportDate;
+                    document.getElementById('reportDetails').value = data.reportDetails;
+                    document.getElementById('reportID').value = data.reportID;
 
-                    // Hide the 'Add Doctor' button and show the 'Update Doctor' button
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+
+        function loadPatients() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/patient')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('patientID');
+                    select.innerHTML = '';
+                    data.forEach(patient => {
+                        const option = document.createElement('option');
+                        option.value = patient.patientID;
+                        option.textContent = `${patient.firstName} ${patient.lastName}`;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function loadTests() {
+            fetch(baseUrl + '/LabAppointment-Service/resources/test')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('testID');
+                    select.innerHTML = '';
+                    data.forEach(test => {
+                        const option = document.createElement('option');
+                        option.value = test.testID;
+                        option.textContent = test.testName;
+                        select.appendChild(option);
+                    });
                 })
                 .catch(error => {
                     console.error('Error:', error);

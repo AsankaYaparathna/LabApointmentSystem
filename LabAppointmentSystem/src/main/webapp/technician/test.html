@@ -65,7 +65,7 @@
                     <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
                     <li><a class="nav-link scrollto active" href="test.html">Test</a></li>
                     <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
-                    <li><a class="nav-link scrollto" href="testresult.html">Test Result</a></li>
+                    <li><a class="nav-link scrollto" href="report.html">Report</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -356,11 +356,9 @@
         }
 
         function getAllTests() {
-            debugger;
             fetch(baseUrl + '/LabAppointment-Service/resources/test')
                 .then(response => response.json())
                 .then(data => {
-                    debugger;
                     // Get the table body element
                     const tbody = document.getElementById('tbody');
                     // Clear existing table rows
@@ -370,19 +368,18 @@
                     data.forEach(test => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                <td>${test.testID}</td>
-                <td>${test.testName}</td>
-                <td>${test.description}</td>
-                <td>${test.price}</td>
-                <td>
-                    <button onclick='TestEdit(${test.testID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button onclick='TestDelete(${test.testID})'><i class="fa-solid fa-trash"></i></button>
-                </td>`;
+                        <td>${test.testID}</td>
+                        <td>${test.testName}</td>
+                        <td>${test.description}</td>
+                        <td>${test.price}</td>
+                        <td>
+                            <button onclick='TestEdit(${test.testID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button onclick='TestDelete(${test.testID})'><i class="fa-solid fa-trash"></i></button>
+                        </td>`;
                         tbody.appendChild(tr);
                     });
                 })
                 .catch(error => {
-                    debugger;
                     console.error('Error:', error);
                 });
         }
@@ -401,9 +398,9 @@
                 .then(response => response.json())
                 .then(data => {
                     // Populate the form fields with the test data
-                    document.getElementById('TestName').value = data.testName;
-                    document.getElementById('Description').value = data.description;
-                    document.getElementById('Price').value = data.price;
+                    document.getElementById('testName').value = data.testName;
+                    document.getElementById('description').value = data.description;
+                    document.getElementById('price').value = data.price;
                     document.getElementById('testID').value = data.testID;
 
                     // Hide the 'Add Test' button and show the 'Update Test' button

@@ -16,6 +16,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.time.LocalDate;
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,8 +29,10 @@ public class PatientResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPatients() {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
             PatientRepo patientRepo = new PatientRepo();
-            return Response.ok(gson.toJson(patientRepo.getAllPatients())).build();
+            List<Patient> list = patientRepo.getAllPatients();
+            return Response.ok(gson.toJson(list)).build();
         } catch (Exception e) {
             logger.error("Failed to get all patients", e);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
@@ -41,6 +44,7 @@ public class PatientResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPatientById(@PathParam("id") int id) {
         try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
             PatientRepo patientRepo = new PatientRepo();
             Patient patient = patientRepo.getPatientByID(id);
             if (patient != null) {
@@ -58,7 +62,7 @@ public class PatientResource {
     public Response addPatient(String json) {
         try {
             Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
+                    .registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
             Patient model = gson.fromJson(json, Patient.class);
             // Perform input validation here if needed
             new PatientRepo().addPatient(model);
@@ -96,7 +100,7 @@ public class PatientResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -106,16 +110,15 @@ public class PatientResource {
         LoginRequest loginRequest = gson.fromJson(json, LoginRequest.class);
         String userName = loginRequest.getUserName();
         String password = loginRequest.getPassword();
-        
+
         PatientRepo patientRepo = new PatientRepo();
         boolean loginSuccess = patientRepo.login(userName, password);
-        
+
         if (loginSuccess) {
             return Response.ok().build(); // Successful login
         } else {
             return Response.status(Response.Status.UNAUTHORIZED).build(); // Unauthorized
         }
     }
-    
-}
 
+}
