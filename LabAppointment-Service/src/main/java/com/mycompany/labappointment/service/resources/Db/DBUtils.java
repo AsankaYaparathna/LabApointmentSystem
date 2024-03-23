@@ -4,9 +4,14 @@
  */
 package com.mycompany.labappointment.service.resources.Db;
 
+import com.mycompany.labappointment.service.resources.Test.Test;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,7 +19,7 @@ import java.sql.SQLException;
  */
 public class DBUtils {
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/lab_appointment_system";
     private static final String USER = "root";
     private static final String PASS = "root";
 
@@ -28,10 +33,12 @@ public class DBUtils {
 
     public Connection getConnection() {
         try {
-            return DriverManager.getConnection(DB_URL, USER, PASS);
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            return conn;
         } catch (SQLException e) {
             System.err.println("Error connecting to database: " + e.getMessage());
             return null;
         }
     }
+    
 }

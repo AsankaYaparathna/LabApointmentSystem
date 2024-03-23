@@ -356,9 +356,11 @@
         }
 
         function getAllTests() {
+            debugger;
             fetch(baseUrl + '/LabAppointment-Service/resources/test')
                 .then(response => response.json())
                 .then(data => {
+                    debugger;
                     // Get the table body element
                     const tbody = document.getElementById('tbody');
                     // Clear existing table rows
@@ -380,6 +382,7 @@
                     });
                 })
                 .catch(error => {
+                    debugger;
                     console.error('Error:', error);
                 });
         }

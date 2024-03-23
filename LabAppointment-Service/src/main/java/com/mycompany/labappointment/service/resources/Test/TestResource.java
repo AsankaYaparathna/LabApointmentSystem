@@ -9,6 +9,7 @@ package com.mycompany.labappointment.service.resources.Test;
  * @author shakyapa
  */
 import com.google.gson.Gson;
+import com.mycompany.labappointment.service.resources.Db.DBUtils;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
