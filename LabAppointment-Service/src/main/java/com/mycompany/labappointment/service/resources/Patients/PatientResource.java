@@ -97,7 +97,7 @@ public class PatientResource {
         }
     }
     
-     @POST
+    @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -116,5 +116,6 @@ public class PatientResource {
             return Response.status(Response.Status.UNAUTHORIZED).build(); // Unauthorized
         }
     }
+    
 }
 

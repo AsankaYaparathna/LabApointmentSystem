@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class DBUtils {
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/lab_appointment_system";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/lab_appointment_system?useTimeZone=true&serverTimezone=UTC&autoReconnect=true&useSSL=false";
     private static final String USER = "root";
     private static final String PASS = "root";
 

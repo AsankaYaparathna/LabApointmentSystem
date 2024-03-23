@@ -146,12 +146,11 @@ public class TechnicianRepo {
     
     public boolean login(String userName, String password) {
         try {
+            String encryptedPassword = encryptPassword(password);
             try (Connection conn = dbConn.getConnection(); 
                     PreparedStatement stmt = conn.prepareStatement(
-                    "SELECT UserName, Password FROM Patients WHERE UserName = ? AND Password = ?")) {
+                    "SELECT UserName, Password FROM Technicians WHERE UserName = ? AND Password = ?")) {
                 stmt.setString(1, userName);
-                
-                String encryptedPassword = encryptPassword(password);
                 stmt.setString(2, encryptedPassword);
                 
                 //stmt.setString(2, password);

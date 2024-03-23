@@ -9,6 +9,8 @@ package com.mycompany.labappointment.service.resources.Technician;
  * @author shakyapa
  */
 import com.google.gson.Gson;
+import com.mycompany.labappointment.service.resources.Patients.PatientRepo;
+import com.mycompany.labappointment.service.resources.Utility.LoginRequest;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -90,5 +92,26 @@ public class TechnicianResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    @POST
+    @Path("login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response loginTechnician(String json) {
+        Gson gson = new Gson();
+        LoginRequest loginRequest = gson.fromJson(json, LoginRequest.class);
+        String userName = loginRequest.getUserName();
+        String password = loginRequest.getPassword();
+        
+        TechnicianRepo repo = new TechnicianRepo();
+        boolean loginSuccess = repo.login(userName, password);
+        
+        if (loginSuccess) {
+            return Response.ok().build(); // Successful login
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build(); // Unauthorized
+        }
+    }
+    
 }
 
