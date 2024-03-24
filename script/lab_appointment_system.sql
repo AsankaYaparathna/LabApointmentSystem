@@ -97,7 +97,9 @@ CREATE TABLE Payments (
     Amount DECIMAL(10, 2),
     PaymentDateTime DATETIME,
     PaymentMethod VARCHAR(255),
-    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+    AppointmentID INT,
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+    FOREIGN KEY (AppointmentID) REFERENCES Appointments(AppointmentID)
 );
 
 CREATE TABLE Reports (
