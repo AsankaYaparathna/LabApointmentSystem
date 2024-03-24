@@ -204,18 +204,8 @@
         <!-- Modal -->
         <div class="modal" id="reportModal">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="reportModal">Report Details</h1>
-                    <div class="row">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()" aria-label="Close"></button>
-                    </div>
-                  </div>
-                <span class="close" >&times;</span>
-                <div id="modalHeader"></div>
-                <h2>Report Details</h2>
+                <div class="modal-header" id="modalHeader"></div>
                 <div id="modalBody"></div>
-                <button onclick="downloadReport()">Download PDF</button>
             </div>
         </div>
 
@@ -404,27 +394,30 @@
                     }
                     const modalHeader = document.getElementById('modalHeader');
                     modalHeader.innerHTML = `
-                     <div class='container text-center'>
-                        <div class='row justify-content-end'>
-                            <div class='col-sm-1'>
-                                <button class='btn btn-success' 
+                    <h1 class='modal-title fs-5' id='reportModal'>Report Details</h1>
+                    <div class='row col-2' style='margin-left:20%;'>
+                        <div class='col-1' style='margin-left:20%;'>
+                            <button class='btn btn-outline-success' 
                                 onclick='downloadReport(${data.reportID},${data.appointmentID},${appointment.patientID})'>
-                                    <i class='fa-solid fa-download'></i>
-                                </button>
-                            </div>
-                            <div class='col-sm-1'>
-                                <span class='close' onclick='closeModal()'>&times;</span>
-                            </div>
+                                <i class='fa-solid fa-download'></i>
+                            </button>
                         </div>
-                    </div>
-                    `;
+                        <div class='col-1' style='margin-left:20%;'>
+                            <button class='btn btn-outline-danger' 
+                                onclick='closeModal()'>
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>`;
                     // Populate the modal body with the report data
                     const modalBody = document.getElementById('modalBody');
                     modalBody.innerHTML = `
-                        <p><strong>Report ID:</strong> ${data.reportID}</p>
-                        <p><strong>Patient Name:</strong> ${patient.firstName} ${patient.lastName}</p>
-                        <p><strong>Appointment ID:</strong> ${data.appointmentID}</p>
-                        <p><strong>Appointment Date:</strong> ${appointment.appointmentDateTime}</p>
+                        <div class='mt-5'>
+                            <p><strong>Report ID:</strong> ${data.reportID}</p>
+                            <p><strong>Patient Name:</strong> ${patient.firstName} ${patient.lastName}</p>
+                            <p><strong>Appointment ID:</strong> ${data.appointmentID}</p>
+                            <p><strong>Appointment Date:</strong> ${appointment.appointmentDateTime}</p>
+                        </div>
                         <div>
                             <p><strong>Report Details:</strong></p> 
                             ${data.reportDetails}
