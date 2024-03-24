@@ -12,12 +12,9 @@ import java.time.LocalDateTime;
 
 public class Report {
     private int reportID;
-    private int patientID;
-    private int testID;
-    private LocalDateTime reportDate;
-    private byte[] reportFile;
+    private int appointmentID;
     private String reportDetails;
-    
+
     public int getReportID() {
         return reportID;
     }
@@ -26,38 +23,14 @@ public class Report {
         this.reportID = reportID;
     }
 
-    public int getPatientID() {
-        return patientID;
+    public int getAppointmentID() {
+        return appointmentID;
     }
 
-    public void setPatientID(int patientID) {
-        this.patientID = patientID;
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
     }
 
-    public int getTestID() {
-        return testID;
-    }
-
-    public void setTestID(int testID) {
-        this.testID = testID;
-    }
-
-    public LocalDateTime getReportDate() {
-        return reportDate;
-    }
-
-    public void setReportDate(LocalDateTime reportDate) {
-        this.reportDate = reportDate;
-    }
-
-    public byte[] getReportFile() {
-        return reportFile;
-    }
-
-    public void setReportFile(byte[] reportFile) {
-        this.reportFile = reportFile;
-    }
-    
     public String getReportDetails() {
         return reportDetails;
     }

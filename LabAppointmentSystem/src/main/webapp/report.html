@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="../assets/img/favicon.png" rel="icon">
-    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -19,21 +19,23 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/3povcqtrg9lv35kgmnqvh7leujjkrh1oirpmdbefqyo9hzyu/tinymce/7/tinymce.min.js"
         referrerpolicy="origin"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <style>
         /* The Modal (background) */
         .modal {
@@ -113,7 +115,7 @@
                     <li><a class="nav-link scrollto" href="patient.html">Patients</a></li>
                     <li><a class="nav-link scrollto" href="doctor.html">Doctor</a></li>
                     <li><a class="nav-link scrollto" href="test.html">Test</a></li>
-                    <li><a class="nav-link scrollto" href="apointment.html">Apointment</a></li>
+                    <li><a class="nav-link scrollto" href="appointment.html">Apointment</a></li>
                     <li><a class="nav-link scrollto active" href="report.html">Report</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -155,7 +157,7 @@
                     <div class="col-lg-8 d-flex align-items-stretch">
                         <div class="icon-boxes d-flex flex-column justify-content-center">
                             <div class="row">
-                                <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="col-xl-6 d-flex align-items-stretch">
                                     <a href="#viewTestResult">
                                         <div class="icon-box mt-4 mt-xl-0">
                                             <i class="bx bx-receipt"></i>
@@ -164,28 +166,6 @@
 
                                         </div>
                                     </a>
-                                </div>
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#addReport">
-                                        <div class="icon-box mt-4 mt-xl-0">
-                                            <i class="bx bx-cube-alt"></i>
-                                            <h4>Add New Report</h4>
-                                            <p>Register a new Report by providing their details below.</p>
-
-                                        </div>
-                                    </a>
-
-                                </div>
-                                <div class="col-xl-4 d-flex align-items-stretch">
-                                    <a href="#viewTestResult">
-                                        <div class="icon-box mt-4 mt-xl-0">
-                                            <i class="bx bx-images"></i>
-                                            <h4>Edit / Delete Report</h4>
-                                            <p>Edit or delete an existing Report's information.</p>
-
-                                        </div>
-                                    </a>
-
                                 </div>
                             </div>
                         </div><!-- End .content-->
@@ -202,7 +182,7 @@
 
                 <div class="row">
 
-                    <h2 class="text-center mb-3">Manage All Reports</h2>
+                    <h2 class="text-center mb-3">View All Reports</h2>
                     <div class="col-lg-12 col-md-12">
                         <table class="table table-dark table-hover">
                             <thead>
@@ -221,99 +201,26 @@
             </div>
         </section><!-- End Counts Section -->
 
-        <!-- ======= Services Section ======= -->
-        <section id="addReport" class="services">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2 id="labelAdd">Add New Report</h2>
-                </div>
-
-                <div class="row">
-                    <div class="row justify-content-md-center">
-
-                        <div class="card px-5 py-3 ">
-                            <input type="hidden" class="form-control" name="reportID" id="reportID" required>
-
-                            <!-- <div class="form-group mt-3">
-                                    <input type="text" class="form-control" name="patientID" id="patientID"
-                                        placeholder="Patient ID" required>
-                                </div> -->
-
-                            <div class="form-group mt-3">
-                                <label for="appointmentID">Select apointment:</label>
-                                <select class="form-control" name="appointmentID" id="appointmentID" required>
-                                </select>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <label for="reportDetails">Add Report details</label>
-                                <script>
-                                    tinymce.init({
-                                        selector: 'textarea',
-                                        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-                                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                                        tinycomments_mode: 'embedded',
-                                        tinycomments_author: 'Author name',
-                                        mergetags_list: [
-                                            { value: 'First.Name', title: 'First Name' },
-                                            { value: 'Email', title: 'Email' },
-                                        ],
-                                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                                    });
-                                </script>
-                                <textarea class="form-control" name="reportDetails" id="reportDetails"
-                                    placeholder="Report Details" required></textarea>
-                            </div>
-                            <div class="text-center mt-3">
-                                <div class="row">
-
-
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-outline-primary col-lg-12" onclick="CancelReport()">
-                                            Cancel
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-outline-primary col-lg-12" onclick="addReport()"
-                                            id="addReportButton">
-                                            Add Report
-                                        </button>
-
-                                        <button class="btn btn-outline-primary col-lg-12" style="display: none;"
-                                            id="updateReportButton" onclick="updateReport()">
-                                            Update Report
-                                        </button>
-                                    </div>
-
-
-
-
-
-
-                                </div>
-
-
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-            </div>
-        </section><!-- End Services Section -->
         <!-- Modal -->
         <div class="modal" id="reportModal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="reportModal">Report Details</h1>
+                    <div class="row">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeModal()" aria-label="Close"></button>
+                    </div>
+                  </div>
+                <span class="close" >&times;</span>
+                <div id="modalHeader"></div>
                 <h2>Report Details</h2>
                 <div id="modalBody"></div>
                 <button onclick="downloadReport()">Download PDF</button>
             </div>
         </div>
+
+
+
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
@@ -338,16 +245,17 @@
         </div>
     </footer><!-- End Footer -->
 
+
     <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
-    <script src="../assets/js/api.js"></script>
+    <script src="assets/js/api.js"></script>
 
     <script>
 
         // Check if username exists in localStorage
-        if (!localStorage.getItem('tusername')) {
+        if (!localStorage.getItem('username')) {
             // If not, redirect to login page
             window.location.href = 'login.html';
         }
@@ -361,8 +269,8 @@
         }
 
         // Call the function to fetch and bind the report lis
+        var patient = '';
         getAllReports();
-        loadApointment();
 
         function Logout() {
             localStorage.removeItem("tusername");
@@ -438,10 +346,7 @@
                                 document.getElementById("reportID").value = "";
                                 //document.getElementById("AppointmentID").value = "";
                                 tinymce.get('reportDetails').setContent('');
-                                document.getElementById('addReportButton').style.display = 'block';
-                                document.getElementById('updateReportButton').style.display = 'none';
-                                document.getElementById('labelAdd').innerText = 'Add Report';
-                                window.location.href = "report.html";
+                                window.location.href = "report.html#viewReport";
                             });
                     } else {
                         swal("Failed to update report!", "Try again", "error");
@@ -456,27 +361,28 @@
         function getAllReports() {
             fetch(baseUrl + '/LabAppointment-Service/resources/report')
                 .then(response => response.json())
-                .then(data => {
+                .then(async data => {
                     // Get the table body element
                     const tbody = document.getElementById('tbody');
                     // Clear existing table rows
                     tbody.innerHTML = '';
-
+                    patient = await getPatientByUserName(localStorage.getItem('username'));
                     data.forEach(async report => {
                         const appointment = await getAppointmentById(report.appointmentID);
-                        const patient = await getPatientById(appointment.patientID);
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
+                        if (appointment.patientID == patient.patientID) {
+                            const tr = document.createElement('tr');
+                            tr.innerHTML = `
                                     <td>${report.reportID}</td>
                                     <td>${patient.firstName} ${patient.lastName}</td>
                                     <td>${report.appointmentID}</td>
                                     <td>${appointment.appointmentDateTime}</td>
                                     <td>
-                                        <button onclick='editReport(${report.reportID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button onclick='deleteReport(${report.reportID})'><i class="fa-solid fa-trash"></i></button>
-                                        <button onclick='viewReport(${report.reportID})'><i class="fa-sharp fa-regular fa-eye"></i></i></button> 
+                                        <button onclick='viewReport(${report.reportID})'><i class="fa-sharp fa-regular fa-eye"></i></i></button>
+                                        
                                     </td>`;
-                        tbody.appendChild(tr);
+                            tbody.appendChild(tr);
+                        }
+
                     });
                 })
                 .catch(error => {
@@ -485,6 +391,7 @@
 
 
         }
+
         function viewReport(reportID) {
             // Fetch the report data by ID
             fetch(baseUrl + `/LabAppointment-Service/resources/report/${reportID}`)
@@ -495,6 +402,22 @@
                     if (appointment) {
                         patient = await getPatientById(appointment.patientID);
                     }
+                    const modalHeader = document.getElementById('modalHeader');
+                    modalHeader.innerHTML = `
+                     <div class='container text-center'>
+                        <div class='row justify-content-end'>
+                            <div class='col-sm-1'>
+                                <button class='btn btn-success' 
+                                onclick='downloadReport(${data.reportID},${data.appointmentID},${appointment.patientID})'>
+                                    <i class='fa-solid fa-download'></i>
+                                </button>
+                            </div>
+                            <div class='col-sm-1'>
+                                <span class='close' onclick='closeModal()'>&times;</span>
+                            </div>
+                        </div>
+                    </div>
+                    `;
                     // Populate the modal body with the report data
                     const modalBody = document.getElementById('modalBody');
                     modalBody.innerHTML = `
@@ -519,114 +442,42 @@
         function closeModal() {
             document.getElementById('reportModal').style.display = 'none';
         }
-        function deleteReport(reportID) {
-            // Show SweetAlert confirm dialog
-            swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this report!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    // If confirmed, delete the report
-                    fetch(baseUrl + `/LabAppointment-Service/resources/report/${reportID}`, {
-                        method: 'DELETE'
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                // Reload the table after successful deletion
-                                getAllReports();
-                                swal("Poof! The report has been deleted!", {
-                                    icon: "success",
-                                });
-                            } else {
-                                swal("Oops! Something went wrong.", {
-                                    icon: "error",
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            swal("Oops! Something went wrong.", {
-                                icon: "error",
-                            });
-                        });
-                } else {
-                    swal("The report is safe!");
-                }
-            });
+
+        async function downloadReport(reportID, appointmentID, patientID) {
+            const patient = await getPatientById(patientID);
+            const appointment = await getAppointmentById(appointmentID);
+            const report = await geReportById(reportID);
+
+            const modalBody = document.getElementById('modalBody');
+            const patientName = `${patient.firstName} ${patient.lastName}`;
+            //const appointmentID = appointment.appointmentID;
+            const appointmentDate = appointment.appointmentDateTime;
+            const reportDetails = report.reportDetails;
+
+
+            const pdf = new jsPDF();
+            pdf.text(`Patient Name: ${patientName}`, 10, 10);
+            pdf.text(`Appointment ID: ${appointmentID}`, 10, 20);
+            pdf.text(`Appointment Date: ${appointmentDate}`, 10, 30);
+            pdf.text(`Report Details: ${reportDetails}`, 10, 40);
+
+            pdf.save('report.pdf');
         }
 
-        function editReport(reportID) {
-            // Navigate to the 'report.html#addReport' URL
-            window.location.href = 'report.html#addReport';
-            // Change the text of the <h2> element to 'Edit Report'
-            document.getElementById('labelAdd').innerText = 'Edit Report';
 
-            document.getElementById('addReportButton').style.display = 'none';
-            document.getElementById('updateReportButton').style.display = 'block';
-            // Fetch the report data by ID
-            fetch(baseUrl + `/LabAppointment-Service/resources/report/${reportID}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Populate the form fields with the report data
-                    document.getElementById('reportID').value = data.reportID;
-                    document.getElementById('appointmentID').value = data.appointmentID;
-                    tinymce.get('reportDetails').setContent(data.reportDetails);
-
-                    // Hide the 'Add Report' button and show the 'Update Report' button
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-
-        function CancelReport() {
-            tinymce.get('reportDetails').setContent('');
-            document.getElementById('addReportButton').style.display = 'block';
-            document.getElementById('updateReportButton').style.display = 'none';
-            document.getElementById('labelAdd').innerText = 'Add Report';
-        }
-
-        function loadApointment() {
-            fetch(baseUrl + '/LabAppointment-Service/resources/appointment')
-                .then(response => response.json())
-                .then(async data => {
-                    const select = document.getElementById('appointmentID');
-                    select.innerHTML = '';
-
-                    // Fetch patient data for all appointments concurrently
-                    const promises = data.map(async model => {
-                        const patient = await getPatientById(model.patientID);
-                        const test = await getTestById(model.testID);
-                        const option = document.createElement('option');
-                        option.value = model.appointmentID;
-                        option.textContent = `${patient.firstName} ${patient.lastName} - ${test.testName} - ${model.appointmentDateTime}`;
-                        select.appendChild(option);
-
-
-                    });
-
-                    await Promise.all(promises);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
 
     </script>
 
 
     <!-- Vendor JS Files -->
-    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="../assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 

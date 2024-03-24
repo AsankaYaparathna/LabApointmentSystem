@@ -9,14 +9,9 @@ package com.mycompany.labappointment.service.resources.Reports;
  * @author shakyapa
  */
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.mycompany.labappointment.service.resources.Utility.LocalDateTimeAdapter;
-
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-
-import java.time.LocalDateTime;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +25,6 @@ public class ReportResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllReports() {
         try {
-            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             ReportRepo reportRepo = new ReportRepo();
             return Response.ok(gson.toJson(reportRepo.getAllReports())).build();
         } catch (Exception e) {
@@ -44,7 +38,6 @@ public class ReportResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getReportById(@PathParam("id") int id) {
         try {
-            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             ReportRepo reportRepo = new ReportRepo();
             Report report = reportRepo.getReportByID(id);
             if (report != null) {
@@ -56,12 +49,29 @@ public class ReportResource {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    @GET
+    @Path("getbyapointment/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getReportByApointmentId(@PathParam("id") int id) {
+        try {
+            ReportRepo reportRepo = new ReportRepo();
+            Report report = reportRepo.getReportByApointmentId(id);
+            if (report != null) {
+                return Response.ok(gson.toJson(report)).build();
+            }
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } catch (Exception e) {
+            logger.error("Failed to get report by ID: " + id, e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addReport(String json) {
         try {
-            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             Report model = gson.fromJson(json, Report.class);
             // Perform input validation here if needed
             new ReportRepo().addReport(model);
@@ -77,7 +87,6 @@ public class ReportResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateReport(String json, @PathParam("id") int id) {
         try {
-            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
             Report model = gson.fromJson(json, Report.class);
             // Perform input validation here if needed
             model.setReportID(id);

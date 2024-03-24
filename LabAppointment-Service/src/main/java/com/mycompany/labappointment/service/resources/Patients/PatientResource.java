@@ -57,6 +57,26 @@ public class PatientResource {
         }
     }
 
+    @GET
+    @Path("/getbyusername/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPatientByUserName(@PathParam("id") String userName) {
+        try {
+            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
+            PatientRepo patientRepo = new PatientRepo();
+            Patient patient = patientRepo.getPatientByUserName(userName);
+            if (patient != null) {
+                return Response.ok(gson.toJson(patient)).build();
+            }
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } catch (Exception e) {
+            logger.error("Failed to get patient by ID: " + userName, e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addPatient(String json) {

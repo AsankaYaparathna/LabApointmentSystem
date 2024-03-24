@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Lab Apointment System - Login Page</title>
+  <title>Lab Appointment System - Login Page</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -56,7 +56,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Lab Apointment System</a></h1>
+      <h1 class="logo me-auto"><a href="index.html">Lab Appointment System</a></h1>
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
@@ -130,11 +130,10 @@
       </div>
     </div>
 
+    <script src="./assets/js/api.js"></script>
     <script>
 
-      var baseUrl = 'http://localhost:8080';
-
-      function Login() {
+      async function Login() {
         var userName = document.getElementById("userName").value;
         var password = document.getElementById("password").value;
 
@@ -150,11 +149,14 @@
           },
           body: JSON.stringify(loginRequest)
         })
-          .then(response => {
+          .then(async response => {
             if (response.ok) {
+              var patient = await getPatientByUserName(userName);
+              debugger;
               localStorage.setItem('username', userName);
+              localStorage.setItem('userData', patient.patientID);
               swal("Login Successful!", "", "success")
-              .then(() => {
+                .then(() => {
                   window.location.href = "index.html";
                 });
             } else {
@@ -179,7 +181,7 @@
 
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
-          &copy; Copyright <strong><span>Lab apointment System</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>Lab Appointment System</span></strong>. All Rights Reserved
         </div>
         <!-- <div class="credits">
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
