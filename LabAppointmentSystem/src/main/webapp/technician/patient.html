@@ -381,8 +381,8 @@
                         <td>${patient.address}</td>
                         <td>${patient.userName}</td>
                         <td>
-                            <button onclick='PatientEdit(${patient.patientID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button onclick='PatientDelete(${patient.patientID})'><i class="fa-solid fa-trash"></i></button>
+                            <button class='btn btn-outline-warning' onclick='PatientEdit(${patient.patientID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class='btn btn-outline-danger' onclick='PatientDelete(${patient.patientID})'><i class="fa-solid fa-trash"></i></button>
                         </td> `;
                         tbody.appendChild(tr);
                     });

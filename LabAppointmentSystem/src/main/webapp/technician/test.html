@@ -373,8 +373,8 @@
                         <td>${test.description}</td>
                         <td>${test.price}</td>
                         <td>
-                            <button onclick='TestEdit(${test.testID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button onclick='TestDelete(${test.testID})'><i class="fa-solid fa-trash"></i></button>
+                            <button class='btn btn-outline-warning' onclick='TestEdit(${test.testID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class='btn btn-outline-danger' onclick='TestDelete(${test.testID})'><i class="fa-solid fa-trash"></i></button>
                         </td>`;
                         tbody.appendChild(tr);
                     });

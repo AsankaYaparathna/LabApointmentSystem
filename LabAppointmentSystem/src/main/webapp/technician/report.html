@@ -471,9 +471,9 @@
                                     <td>${report.appointmentID}</td>
                                     <td>${appointment.appointmentDateTime}</td>
                                     <td>
-                                        <button onclick='editReport(${report.reportID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <button onclick='deleteReport(${report.reportID})'><i class="fa-solid fa-trash"></i></button>
-                                        <button onclick='viewReport(${report.reportID})'><i class="fa-sharp fa-regular fa-eye"></i></i></button> 
+                                        <button class='btn btn-outline-warning'  onclick='editReport(${report.reportID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                                        <button class='btn btn-outline-danger'  onclick='deleteReport(${report.reportID})'><i class="fa-solid fa-trash"></i></button>
+                                        <button class='btn btn-outline-primary'  onclick='viewReport(${report.reportID})'><i class="fa-sharp fa-regular fa-eye"></i></i></button> 
                                     </td>`;
                         tbody.appendChild(tr);
                     });

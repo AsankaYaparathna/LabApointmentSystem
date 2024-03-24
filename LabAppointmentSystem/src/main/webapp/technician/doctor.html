@@ -422,8 +422,8 @@
                 <td>${doctor.contactNumber}</td>
                 <td>${doctor.email}</td>
                 <td>
-                    <button onclick='DoctorEdit(${doctor.doctorID})'><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button onclick='DoctorDelete(${doctor.doctorID})'><i class="fa-solid fa-trash"></i></button>
+                    <button class='btn btn-outline-warning'  onclick='DoctorEdit(${doctor.doctorID})'><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class='btn btn-outline-danger' onclick='DoctorDelete(${doctor.doctorID})'><i class="fa-solid fa-trash"></i></button>
                 </td> `;
                         tbody.appendChild(tr);
                     });
